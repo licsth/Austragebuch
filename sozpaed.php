@@ -38,17 +38,17 @@ $first = $_SESSION['first'];
             </p>
         </div>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
             <form action="austragebuch.php?show=all">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Austragebuch</button>
             </form>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
             <form action="password.php">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Passwort ändern</button>
             </form>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
             <form action="logout.php">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
             </form>

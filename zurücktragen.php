@@ -17,7 +17,7 @@ include 'dbh.php';
     <div class="container theme-showcase" role="main">
 <a href="schueler.php" class="btn btn-sm btn-default">Home</a><br><br>
             <div class="row">
-                <div class="login">
+                <div class="login col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-3">
                     <h2>Zurücktragen</h2>
                     <form method="post" action="zurücktragenp.php">
                         <p>Dein letzter Eintrag: </p>

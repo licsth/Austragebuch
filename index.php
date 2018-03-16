@@ -23,7 +23,7 @@
     <div class="container theme-showcase" role="main">
 
             <div class="row">
-                <div class="login">
+                <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-3">
                     <h2>Einloggen</h2>
                     <?php
                         if($err == 'login'){

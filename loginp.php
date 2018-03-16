@@ -13,21 +13,39 @@ if(!$uid || !$pwd){
     header("Location: index.php?err=login");
 } else{
 
-$sql = "SELECT * FROM user WHERE uid='$uid'";
+$sql = "SELECT * FROM schueler WHERE uid='$uid'";
 $result = mysqli_query($conn, $sql);
 
 if(!$row = mysqli_fetch_assoc($result)){
-    header("Location: index.php?err=user");
+    echo 'Hallo';
+    $sql = "SELECT * FROM sozpaed WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    if(!$row = mysqli_fetch_assoc($result)){
+        header('Location: index.php?err=user');
+    }
+    else{
+        if($row['pwd'] == $pwd){
+            $_SESSION['uid'] = $row['uid'];
+            $_SESSION['pwd'] = $row['pwd'];
+            $_SESSION['role'] = 'sozpaed';
+            $_SESSION['first'] = $row['first'];
+            $_SESSION['last'] = $row['last'];
+            header("Location: sozpaed.php");
+        }
+        else{
+            header("Location: index.php?err=user");
+        }
+    }
 }
 else{
+    
     if($row['pwd'] == $pwd){
         $_SESSION['uid'] = $row['uid'];
         $_SESSION['pwd'] = $row['pwd'];
-        $_SESSION['role'] = $row['role'];
-        $role = $_SESSION['role'];
+        $_SESSION['role'] = 'schueler';
         $_SESSION['first'] = $row['first'];
         $_SESSION['last'] = $row['last'];
-        header("Location: $role.php");
+        header("Location: schueler.php");
     }
     else{
         header("Location: index.php?err=user");

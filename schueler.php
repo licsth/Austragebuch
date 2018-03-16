@@ -54,7 +54,7 @@ $ausgetragen = $row['ausgetragen'];
             </p>
         </div>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
                 <?php
                 if(!$ausgetragen){
                     echo "<form action='austragen.php'>
@@ -67,12 +67,17 @@ $ausgetragen = $row['ausgetragen'];
                 }
                 ?>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
             <form action="password.php">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Passwort ändern</button>
             </form>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
+            <form action="gast.php">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Gast anmelden</button>
+            </form>
+            </div>
+            <div class="col-lg-3 col-sm-6">
             <form action="logout.php">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
             </form>
