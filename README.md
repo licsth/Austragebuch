@@ -60,4 +60,4 @@ Die Passwörter werden unverschlüsselt als reiner Text gespeichert. Wer dies ä
 Sollte euer Server nicht localhost heißen, oder habt ihr an den Zugangsdaten etwas verändert (also Benutzername nicht "root" und/oder Passwort nicht leer), könnt ihr dies in der Datei dbh.php ändern.
 
 #### Registrierung von Nutzern
-Der Ordner "Verworfen" enthält Dateien, die nicht in die eigentliche Seite integriert wurden, die aber trotzdem nützlich sein könnten, wie zum Beispiel die Registrierung von Schülern und SozPäds über eine benutzerfreundliche Oberfläche. Diese Funktion ist vollständig funktionsfähig und kann genutzt werden, indem ihr die Seite localhost/Austragebuch/Verworfen/schuelerregister.php bzw sozpaedregister.php aufruft.
+Der Ordner "Verworfen" enthält Dateien, die nicht in die eigentliche Seite integriert wurden, die aber trotzdem nützlich sein könnten, wie zum Beispiel die Registrierung von Schülern und SozPäds über eine benutzerfreundliche Oberfläche. Diese Funktion ist vollständig funktionsfähig und kann genutzt werden, indem ihr die Seite localhost/Austragebuch/Verworfen/schuelerregister.php bzw. sozpaedregister.php aufruft.
