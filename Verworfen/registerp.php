@@ -4,10 +4,6 @@ if(!isset($_SESSION['uid'])){
     header("Location: logout.php");
 } 
 else {
-    $role = $_SESSION['role'];
-    if($role == 'schueler' || $role == 'sozpaed'){
-        header("Location: logout.php");
-    } 
     else{
         include 'dbh.php';
 
