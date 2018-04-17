@@ -1,22 +1,28 @@
 <?php
     session_start();
-include 'dbh.php';
-if(!isset($_SESSION['uid'])){
-    header("Location: index.php");
-}
-if($_SESSION['role'] != 'sozpaed'){
-    header("Location: logout.php");
-}
-$src = '';
-if(!empty($_GET['src'])){
-    $src = $_GET['src'];
-}
-$first = $_SESSION['first'];
-$uid = $_SESSION['uid'];
+    include 'dbh.php';
+    if(!isset($_SESSION['uid'])){
+        header("Location: index.php");
+    }
+    if($_SESSION['role'] != 'schueler'){
+        header("Location: logout.php");
+    }
+    $src = '';
+    if(!empty($_GET['src'])){
+        $src = $_GET['src'];
+    }
+    $first = $_SESSION['first'];
+    $uid = $_SESSION['uid'];
+
+    $sql = "SELECT ausgetragen FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $ausgetragen = $row['ausgetragen'];
 ?>
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheet.css" rel="stylesheet">
     <!-- Bootstrap-Theme -->
     <title>Willkommen</title>
 </head>
@@ -37,21 +43,20 @@ $uid = $_SESSION['uid'];
         <!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Start <span class="sr-only">(aktuell)</span></a></li>
-            <li><a href="austragebuch.php?show=all">Austragebuch</a></li>
-            <li><a href="besuch.php">Besuchsankündigungen 
-                <?php
-                
-                $sql = "SELECT COUNT(name) FROM gast WHERE bestaetigt IS NULL";
-                $result = mysqli_query($conn, $sql);
-                $row = mysqli_fetch_assoc($result);
-                $count = $row['COUNT(name)'];
-                if($count > 0){
-                    echo "<span class='badge'>$count</span>";
+            <li><a href="schueler.php">Start <span class="sr-only">(aktuell)</span></a></li>
+            <li><?php
+                if(!$ausgetragen){
+                    echo "<a href='austragen.php'>
+                        Austragen
+                    </a>";
+                } else{
+                    echo "<a href='zurücktragen.php'>
+                        Zurücktragen
+                    </a>";
                 }
-                
-                ?>
-                </a></li>
+                ?></li>
+            <li><a href="gast.php">Gast anmelden</a></li>
+            <li class="active"><a href="#">Besuchsankündigungen</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -68,21 +73,31 @@ $uid = $_SESSION['uid'];
     </nav>
     
     <div class="container theme-showcase" role="main">
-        <br>
+        
+        <h1>Deine Besuchsankündigungen</h1><br>
         <?php
-        if($src == 'pwd'){
-            echo "<div class='alert alert-success' role='alert'>Passwort erfolgreich geändert.</div>";
+        
+        $sql = "SELECT name, zeitraum, bestaetigt, id FROM gast WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
+        $result = mysqli_query($conn, $sql);
+        
+        while($row = mysqli_fetch_assoc($result)){
+            $name = $row['name'];
+            $zeitraum = $row['zeitraum'];
+            $bestaetigt = $row['bestaetigt'];
+            $id = $row['id'];
+            
+            echo "<div class='panel panel-info'><div class='panel-heading'>
+    <h3 class='panel-title'>$zeitraum <span aria-hidden='true'><a href='aktuell.php?id=$id' class='close'>&times;</a></span></h3>
+  </div><div class='panel-body'>";
+            
+            if($bestaetigt) echo "<strong>Bestätigter</strong> ";
+            else echo "<strong>Unbestätigter</strong> ";
+                    
+            echo "Besuch von <strong>$name</strong>.
+                </div></div>";
         }
+        
         ?>
-        <div class="jumbotron">
-            <h1><?php
-                echo "Hallo, $first.";
-	           ?>
-            </h1>
-            <p>
-                Willkommen im digitalen Austragebuch.
-            </p>
-        </div>
         <div class="row">
             
         </div>

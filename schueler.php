@@ -1,32 +1,77 @@
 <?php
     session_start();
     include 'dbh.php';
-if(!isset($_SESSION['uid'])){
-    header("Location: index.php");
-}
-if($_SESSION['role'] != 'schueler'){
-    header("Location: logout.php");
-}
-$src = '';
-if(!empty($_GET['src'])){
-    $src = $_GET['src'];
-}
-$first = $_SESSION['first'];
-$uid = $_SESSION['uid'];
+    if(!isset($_SESSION['uid'])){
+        header("Location: index.php");
+    }
+    if($_SESSION['role'] != 'schueler'){
+        header("Location: logout.php");
+    }
+    $src = '';
+    if(!empty($_GET['src'])){
+        $src = $_GET['src'];
+    }
+    $first = $_SESSION['first'];
+    $uid = $_SESSION['uid'];
 
-$sql = "SELECT ausgetragen FROM schueler WHERE uid='$uid'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$ausgetragen = $row['ausgetragen'];
+    $sql = "SELECT ausgetragen FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $ausgetragen = $row['ausgetragen'];
 ?>
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="stylesheet.css" rel="stylesheet">
     <!-- Bootstrap-Theme -->
     <title>Willkommen</title>
 </head>
 <body role="document">
-    <br>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Titel und Schalter werden für eine bessere mobile Ansicht zusammengefasst -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Navigation ein-/ausblenden</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Austragebuch</a>
+        </div>
+
+        <!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Start <span class="sr-only">(aktuell)</span></a></li>
+            <li><?php
+                if(!$ausgetragen){
+                    echo "<a href='austragen.php'>
+                        Austragen
+                    </a>";
+                } else{
+                    echo "<a href='zurücktragen.php'>
+                        Zurücktragen
+                    </a>";
+                }
+                ?></li>
+            <li><a href="gast.php">Gast anmelden</a></li>
+            <li><a href="gaeste.php">Besuchsankündigungen</a></li>
+          </ul>
+            
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="password.php">Passwort ändern</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="logout.php">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
     
     <div class="container theme-showcase" role="main">
         <br>
@@ -35,6 +80,8 @@ $ausgetragen = $row['ausgetragen'];
             echo "<div class='alert alert-success' role='alert'>Du wurdest erfolgreich ausgetragen.</div>";
         } else if($src == 'zurücktragen'){
             echo "<div class='alert alert-success' role='alert'>Du wurdest erfolgreich zurückgetragen.</div>";
+        } else if($src == 'gast'){
+            echo "<div class='alert alert-success' role='alert'>Gast wurde erfolgreich angemeldet.</div>";
         }
         ?>
         <div class="jumbotron">
@@ -53,37 +100,23 @@ $ausgetragen = $row['ausgetragen'];
                 ?>
             </p>
         </div>
+        <?php
+        
+        $sql = "SELECT name, zeitraum FROM gast WHERE schueler_uid='$uid' AND bestaetigt IS NULL";
+        $result = mysqli_query($conn, $sql);
+        
+        while($row = mysqli_fetch_assoc($result)){
+            $name = $row['name'];
+            $zeitraum = $row['zeitraum'];
+            echo "<div class='alert alert-warning alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button><strong>Hinweis!</strong> Dein Besuch von $name im Zeitraum $zeitraum wurde noch nicht bestätigt.</div>";
+        }
+        
+        ?>
         <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <?php
-                if(!$ausgetragen){
-                    echo "<form action='austragen.php'>
-                        <button class='btn btn-lg btn-primary btn-block' type='submit'>Austragen</button>
-                    </form>";
-                } else{
-                    echo "<form action='zurücktragen.php'>
-                        <button class='btn btn-lg btn-primary btn-block' type='submit'>Zurücktragen</button>
-                    </form>";
-                }
-                ?>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-            <form action="password.php">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Passwort ändern</button>
-            </form>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-            <form action="gast.php">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Gast anmelden</button>
-            </form>
-            </div>
-            <div class="col-lg-3 col-sm-6">
-            <form action="logout.php">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Logout</button>
-            </form>
-            </div>
             
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>

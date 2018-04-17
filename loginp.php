@@ -17,7 +17,6 @@ $sql = "SELECT * FROM schueler WHERE uid='$uid'";
 $result = mysqli_query($conn, $sql);
 
 if(!$row = mysqli_fetch_assoc($result)){
-    echo 'Hallo';
     $sql = "SELECT * FROM sozpaed WHERE uid='$uid'";
     $result = mysqli_query($conn, $sql);
     if(!$row = mysqli_fetch_assoc($result)){

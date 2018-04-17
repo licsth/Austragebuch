@@ -1,0 +1,17 @@
+/*.navbar{
+    border-radius: 0;
+}
+
+.nav, .nav li, .nav li a, .navbar-brand{
+    color: #602673 !important;
+    font-weight: 500;
+}
+
+.nav .dropdown-menu a{
+    color: #444 !important;
+    font-weight: 400;
+}
+
+.nav li a:hover{
+    color: #333 !important;
+}*/

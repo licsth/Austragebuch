@@ -8,27 +8,20 @@ if(!isset($_SESSION['uid'])){
 if($_SESSION['role'] != 'sozpaed'){
     header("Location: logout.php");
 }
-$src = '';
-if(!empty($_GET['src'])){
-    $src = $_GET['src'];
-}
 
 $show = 'all';
 if(!empty($_GET['show'])){
     $show = $_GET['show'];
 }
 
-$first = $_SESSION['first'];
-
-/*$von = "";
-if(!empty($_SESSION['von'])){
-    $von = $_SESSION['von'];
+$anzahl = 2;
+if(!empty($_GET['anzahl'])){
+    $anzahl = $_GET['anzahl'];
 }
 
-$bis = 'CURDATE() + 1';
-if(!empty($_SESSION['bis'])){
-    $bis = $_SESSION['bis'];
-}*/
+$first = $_SESSION['first'];
+
+$uid = $_SESSION['uid'];
 ?>
 <html>
 <head>
@@ -37,30 +30,61 @@ if(!empty($_SESSION['bis'])){
     <title>Austragebuch</title>
 </head>
 <body role="document">
-    <br>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Titel und Schalter werden für eine bessere mobile Ansicht zusammengefasst -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Navigation ein-/ausblenden</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Austragebuch</a>
+        </div>
+
+        <!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="sozpaed.php">Start <span class="sr-only">(aktuell)</span></a></li>
+            <li class="active"><a href="#">Austragebuch</a></li>
+            <li><a href="besuch.php">Besuchsankündigungen <span class="badge">
+                <?php
+                
+                $sql = "SELECT COUNT(name) FROM gast WHERE bestaetigt IS NULL";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                echo $row['COUNT(name)'];
+                
+                ?>
+                </span></a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="password.php">Passwort ändern</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="logout.php">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
     <div class="container theme-showcase" role="main">
-        <a href="sozpaed.php" class="btn btn-sm btn-default">Home</a><br><br>
-        <?php
-        if($src == 'pwd'){
-            echo "<div class='alert alert-success' role='alert'>Passwort erfolgreich geändert.</div>";
-        }
-        
-        ?>
-        <div class="jumbotron">
-            <h1><?php
-                echo "Hallo, $first.";
-	           ?>
-            </h1>
-            <p>
-                Willkommen im digitalen Austragebuch. 
+        <div class="page-header">
+            <h1>Austragebuch<small>
+            
+
                 <?php
                 if($show == 'all'){
-                    echo "Dir werden alle Einträge der letzten zwei Tage angezeigt.";
+                    echo "Einträge der letzten Tage";
                 } else{
-                    echo "Dir werden alle nicht zurückgetragenen Einträge angezeigt.";
+                    echo "Nicht zurückgetragene Einträge";
                 }
                 ?>
-            </p>
+            </small></h1>
         </div>
         <div class="row">
             <div class="col-md-3">
@@ -70,28 +94,18 @@ if(!empty($_SESSION['bis'])){
                }
                ?>
                          > Nur nicht zurückgetragene</span></div>
-            <!--<div class="col-md-9">
-                <div class="col-md-2">Zeitraum: </div>
-                <div class="col-md-10">
-                    <form action="austragebuchp.php" method="post">
-                        <div class="col-md-4"><input type="text" name="von" placeholder="Von" class="form-control" <?php
-                        /*if($von != ''){
-                            echo "value='$von'";
-                        }                             
-                        ?>
-                        ></div>
-                        <div class="col-md-4"><input type="text" name="bis" placeholder="Bis" class="form-control"<?php
-                        if($bis != 'CURDATE() + 1'){
-                            echo "value='$bis'";
-                        } */                            
-                        ?>></div>
-                        <div class="col-md-2"><input type="submit" value="OK" class="btn btn-primary"></div>
-                    </form>
-                </div>
-            </div>-->
+            
+            <?php
+            if($show == 'all'){
+                echo '
+            <div class="col-md-4">
+                <form class="form-inline" action="anzahltage.php" method="get">Anzahl anzuzeigender Tage: <input type="number" value="' . $anzahl . '" style="width:3em" name="anzahl"> <input  class="btn btn-default" style="transform:scale(.8)" type="submit" value="Ok"></form>
+            </div>';
+            }
+            ?>
         </div>
         <br>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
               <tr>
                 <th>#</th>
@@ -108,7 +122,7 @@ if(!empty($_SESSION['bis'])){
                 <?php
                 $sql = '';
                 if($show == 'all'){
-                    $sql = "SELECT * FROM eintrag WHERE away > CURDATE() - 2 ORDER BY id DESC";
+                    $sql = "SELECT * FROM eintrag WHERE away > CURDATE() - $anzahl ORDER BY id DESC";
                 } else{
                     $sql = "SELECT * FROM eintrag WHERE isback IS NULL ORDER BY id DESC";
                 }
@@ -142,5 +156,7 @@ if(!empty($_SESSION['bis'])){
         </table>
     </div>
     <script src="main.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>
