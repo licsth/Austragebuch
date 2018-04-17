@@ -3,9 +3,6 @@
     if(!isset($_SESSION['uid'])){
     header("Location: index.php");
 } 
-if($_SESSION['role'] != 'admin'){
-    header("Location: logout.php");
-}
 ?>
 <html>
 <head>
@@ -38,7 +35,6 @@ if($_SESSION['role'] != 'admin'){
                             <select name="role">
                                 <option value="schueler" selected>Schüler</option>
                                 <option value="sozpaed">SozPäd</option>
-                                <option value="admin">Admin</option>
                             </select>
                         </label>
                         <input type="text" class="form-control" placeholder="Vorname" name="first">
