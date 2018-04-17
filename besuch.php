@@ -8,8 +8,6 @@ if(!isset($_SESSION['uid'])){
 if($_SESSION['role'] != 'sozpaed'){
     header("Location: logout.php");
 }
-
-$first = $_SESSION['first'];
 $uid = $_SESSION['uid'];
 
 ?>
@@ -81,6 +79,7 @@ $uid = $_SESSION['uid'];
             $name = $row['name'];
             $zeitraum = $row['zeitraum'];
             $uid = $row['schueler_uid'];
+            $antrag = $row['antrag'];
 
             $sql2 = "SELECT * FROM user WHERE uid='$uid'";
             $result2 = mysqli_query($conn, $sql2);
@@ -93,7 +92,7 @@ $uid = $_SESSION['uid'];
             <div class='panel-heading'>
     <h3 class='panel-title'>Besuch für $first $last</h3>
   </div><div class='panel-body'><strong>Von:</strong> $name<br><strong>Zeitraum:</strong> $zeitraum
-          <br><br><a href='besuchp.php?id=$id' class='btn btn-default'>Bestätigen</a>
+          <br><strong>Eingereicht:</strong> $antrag<br><br><a href='besuchp.php?id=$id' class='btn btn-default'>Bestätigen</a>
           </div>
         </div>
         
