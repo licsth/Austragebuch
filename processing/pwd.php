@@ -1,8 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['uid'])){
-    echo "Hi";
-    //header("Location: ../index.php");
+    header("Location: ../index.php");
 }
 
 include 'dbh.php';
@@ -17,14 +16,11 @@ if($pwd == $_POST['old']){
         $sql = "UPDATE $role SET pwd='$new' WHERE uid='$uid'";
         $result = mysqli_query($conn, $sql);
         $_SESSION['pwd'] = $new;
-        echo "Fertig.";
         header("Location: ../$role.php?src=pwd");
     } else{
-        echo "Kein Passwort.";
         header("Location: ../password.php?err=new");
     }
 } else{
-    echo "Falsches Passwort.";
     header("Location: ../password.php?err=pwd");
 }
 ?>
