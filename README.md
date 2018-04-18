@@ -56,12 +56,12 @@ CREATE TABLE gast(
 
 # Nutzerregistrierung
 
-### Über Benutzeroberfläche
+## Über Benutzeroberfläche
 Der Ordner "Verworfen" enthält Dateien, die nicht in die eigentliche Seite integriert wurden, die aber trotzdem nützlich sein könnten, wie zum Beispiel die Registrierung von Schülern und SozPäds über eine benutzerfreundliche Oberfläche. Diese Funktion ist vollständig funktionsfähig und kann genutzt werden, indem ihr die Seite localhost/Austragebuch/Verworfen/schuelerregister.php bzw. sozpaedregister.php aufruft.
 
 Wenn ihr die automatische Registrierfunktion benutzt, werden neue Schüler automatisch als vorname.nachname und SozPäds als ersterBuchstabeVorname.nachname registriert, das Passwort ist identisch mit dem Nutzernamen.
 
-### Mit MySQL
+## Mit MySQL
 Im Ordner "Sonstiges" befindet sich eine Liste mit korrekten SQL-Befehlen, um alle aktuellen Schüler der Q2 und Q4, sowie alle SozPäds zu registrieren. Dabei werden die Schüler als vorname.nachname eingespeichert, die SozPäds als ersterBuchstabeVorname.nachname; das Passwort ist jeweils identisch.
 
 Anderweitig ist es ebenfalls möglich, Schüler und SozPäds manuell und nach anderen Schemata zu registrieren.
