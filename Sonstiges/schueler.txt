@@ -111,7 +111,7 @@ INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('nora.etzold', 'nora.etz
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('paul.wegner', 'paul.wegner', 'Paul', 'Wegner', '3.2');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('david.kress', 'david.kress', 'David', 'Kress', '9.0');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('darlyn.apel', 'darlyn.apel', 'Darlyn', 'Apel', '1.1');
-INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('lukas.lengsfeld', 'lukas.lengsfeld', 'Lukas', 'Lengsfeld', '10.0');
+INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('lukas.lengsfeld', 'lukas.lengsfeld', 'Lukas', 'Lengsfeld', '4.2');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('sabrina.brosch', 'sabrina.brosch', 'Sabrina', 'Brosch', '1.1');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('moritz.löwer', 'moritz.löwer', 'Moritz', 'Löwer', '10.0');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('matheo.dapper', 'matheo.dapper', 'Matheo', 'Dapper', '9.0');
