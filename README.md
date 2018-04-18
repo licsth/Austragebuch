@@ -54,6 +54,8 @@ CREATE TABLE gast(
   aktuell BOOLEAN DEFAULT 1);
 ```
 
+Die Befehle zur Erstellung der gesamten Tabellen finden sich auch gesammelt in der Datei Sonstiges/dbsetup.txt zum Kopieren und Ausführen.
+
 ## Nutzerregistrierung
 
 ### Über Benutzeroberfläche
