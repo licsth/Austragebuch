@@ -22,7 +22,7 @@ else {
         $wg = $row['wg'];
         
         if(!$wohin || !$back){
-            header('Location: austragen.php?err=empty');
+            header('Location: ../austragen.php?err=empty');
         }
 
         $sql = "INSERT INTO eintrag(uid, wg, back, absprache, wohin) VALUES ('$uid', '$wg', '$back', '$absprache', '$wohin')";
@@ -31,7 +31,7 @@ else {
         $sql = "UPDATE schueler SET ausgetragen=1 WHERE uid='$uid'";
         $result = mysqli_query($conn, $sql);
         
-        header("Location: schueler.php?src=austragen");
+        header("Location: ../schueler.php?src=austragen");
     }
 }
 ?>

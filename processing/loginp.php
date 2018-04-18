@@ -10,7 +10,7 @@ $uid = str_replace("'", "\'", $uid);
 $pwd = str_replace("'", "\'", $pwd);
 
 if(!$uid || !$pwd){
-    header("Location: index.php?err=login");
+    header("Location: ../index.php?err=login");
 } else{
 
 $sql = "SELECT * FROM schueler WHERE uid='$uid'";
@@ -20,7 +20,7 @@ if(!$row = mysqli_fetch_assoc($result)){
     $sql = "SELECT * FROM sozpaed WHERE uid='$uid'";
     $result = mysqli_query($conn, $sql);
     if(!$row = mysqli_fetch_assoc($result)){
-        header('Location: index.php?err=user');
+        header('Location: ../index.php?err=user');
     }
     else{
         if($row['pwd'] == $pwd){
@@ -29,10 +29,10 @@ if(!$row = mysqli_fetch_assoc($result)){
             $_SESSION['role'] = 'sozpaed';
             $_SESSION['first'] = $row['first'];
             $_SESSION['last'] = $row['last'];
-            header("Location: sozpaed.php");
+            header("Location: ../sozpaed.php");
         }
         else{
-            header("Location: index.php?err=user");
+            header("Location: ../index.php?err=user");
         }
     }
 }
@@ -44,10 +44,10 @@ else{
         $_SESSION['role'] = 'schueler';
         $_SESSION['first'] = $row['first'];
         $_SESSION['last'] = $row['last'];
-        header("Location: schueler.php");
+        header("Location: ../schueler.php");
     }
     else{
-        header("Location: index.php?err=user");
+        header("Location: ../index.php?err=user");
     }
 }
 }

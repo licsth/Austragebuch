@@ -43,7 +43,7 @@ if(!empty($_GET['err'])){
                         echo "<div class='alert alert-danger' role='alert'>Bitte gib einen gültigen Wert für das neue Passwort ein.</div>";
                     }
                 ?>
-                <form method="post" action="pwd.php">
+                <form method="post" action="processing/pwd.php">
                     <input type="password" class="form-control" placeholder="Altes Passwort" name="old">
                     <input type="password" class="form-control" placeholder="Neues Passwort" name="new"><br>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>

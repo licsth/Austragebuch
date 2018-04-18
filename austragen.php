@@ -28,7 +28,7 @@
                             echo "<div class='alert alert-danger' role='alert'>Bitte gültige Werte eingeben.</div>";
                         }
                     ?>
-                    <form method="post" action="austragenp.php">
+                    <form method="post" action="processing/austragenp.php">
                         <input type="text" class="form-control" placeholder="Wohin?" name="wohin">
                         <input type='datetime' class="form-control" placeholder="Wann zurück?" name="back">
                         <input type="text" class="form-control" placeholder="Absprache?" name="absprache"><br>

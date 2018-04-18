@@ -87,7 +87,7 @@
             $id = $row['id'];
             
             echo "<div class='panel panel-info'><div class='panel-heading'>
-    <h3 class='panel-title'>$zeitraum <span aria-hidden='true'><a href='aktuell.php?id=$id' class='close'>&times;</a></span></h3>
+    <h3 class='panel-title'>$zeitraum <span aria-hidden='true'><a href='processing/aktuell.php?id=$id' class='close'>&times;</a></span></h3>
   </div><div class='panel-body'>";
             
             if($bestaetigt) echo "<strong>Bestätigter</strong> ";

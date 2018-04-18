@@ -77,11 +77,13 @@
         <br>
         <?php
         if($src == 'austragen'){
-            echo "<div class='alert alert-success' role='alert'>Du wurdest erfolgreich ausgetragen.</div>";
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Du wurdest erfolgreich ausgetragen.</div>";
         } else if($src == 'zurücktragen'){
-            echo "<div class='alert alert-success' role='alert'>Du wurdest erfolgreich zurückgetragen.</div>";
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Du wurdest erfolgreich zurückgetragen.</div>";
         } else if($src == 'gast'){
-            echo "<div class='alert alert-success' role='alert'>Gast wurde erfolgreich angemeldet.</div>";
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Gast wurde erfolgreich angemeldet.</div>";
+        } else if($src == 'pwd'){
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Passwort wurde erfolgreich geändert.</div>";
         }
         ?>
         <div class="jumbotron">

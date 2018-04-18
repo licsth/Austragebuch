@@ -20,13 +20,13 @@ else {
         $uid = $_SESSION['uid'];
         
         if(!$wann || !$uid){
-            header('Location: austragen.php?err=empty');
+            header('Location: ../austragen.php?err=empty');
         }
 
         $sql = "INSERT INTO gast(zeitraum, name, schueler_uid) VALUES ('$wann', '$name', '$uid')";
         $result = mysqli_query($conn, $sql);
         
-        header("Location: schueler.php?src=gast");
+        header("Location: ../schueler.php?src=gast");
     }
 }
 ?>

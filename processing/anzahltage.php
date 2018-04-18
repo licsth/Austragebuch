@@ -9,7 +9,7 @@ if(!isset($_SESSION['uid']) || $role == 'admin' || $role == 'schueler' || !isset
 
 else{
     $anzahl = $_GET['anzahl'];
-    header("Location: austragebuch.php?anzahl=$anzahl");
+    header("Location: ../austragebuch.php?anzahl=$anzahl");
 }
 
 

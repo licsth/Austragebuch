@@ -5,7 +5,7 @@ if(!isset($_SESSION['uid'])){
 } 
 else {
     $role = $_SESSION['role'];
-    if($role == 'admin' || $role == 'sozpaed'){
+    if($role != 'schueler'){
         header("Location: logout.php");
     } 
     else{
@@ -17,7 +17,7 @@ else {
         $sql = "UPDATE schueler SET ausgetragen=NULL WHERE uid='$uid'";
         $result = mysqli_query($conn, $sql);
         
-        header("Location: schueler.php?src=zurücktragen");
+        header("Location: ../schueler.php?src=zurücktragen");
     }
 }
 ?>

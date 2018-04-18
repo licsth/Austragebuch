@@ -32,7 +32,7 @@
                             echo "<div class='alert alert-danger' role='alert'>Benutzername oder Passwort sind inkorrekt.</div>";
                         }
                     ?>
-                    <form method="post" action="loginp.php">
+                    <form method="post" action="processing/loginp.php">
                         <input type="text" class="form-control" placeholder="Benutzername" name="uid">
                         <input type="password" class="form-control" placeholder="Passwort" name="pwd"><br>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>

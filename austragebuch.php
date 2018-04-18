@@ -6,7 +6,7 @@ if(!isset($_SESSION['uid'])){
     header("Location: index.php");
 }
 if($_SESSION['role'] != 'sozpaed'){
-    header("Location: logout.php");
+    header("Location: processing/logout.php");
 }
 
 $show = 'all';
@@ -99,7 +99,7 @@ $uid = $_SESSION['uid'];
             if($show == 'all'){
                 echo '
             <div class="col-md-4">
-                <form class="form-inline" action="anzahltage.php" method="get">Anzahl anzuzeigender Tage: <input type="number" value="' . $anzahl . '" style="width:3em" name="anzahl"> <input  class="btn btn-default" style="transform:scale(.8)" type="submit" value="Ok"></form>
+                <form class="form-inline" action="processing/anzahltage.php" method="get">Anzahl anzuzeigender Tage: <input type="number" value="' . $anzahl . '" style="width:3em" name="anzahl"> <input  class="btn btn-default" style="transform:scale(.8)" type="submit" value="Ok"></form>
             </div>';
             }
             ?>

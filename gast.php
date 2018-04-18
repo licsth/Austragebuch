@@ -28,7 +28,7 @@
                             echo "<div class='alert alert-danger' role='alert'>Bitte gültige Werte eingeben.</div>";
                         }
                     ?>
-                    <form method="post" action="gastp.php">
+                    <form method="post" action="processing/gastp.php">
                         <input type="text" class="form-control" placeholder="Zeitraum" name="wann">
                         <input type='datetime' class="form-control" placeholder="Name des Gastes" name="name"><br>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>

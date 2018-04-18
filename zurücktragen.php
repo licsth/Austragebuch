@@ -19,7 +19,7 @@ include 'dbh.php';
             <div class="row">
                 <div class="login col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-3">
                     <h2>Zurücktragen</h2>
-                    <form method="post" action="zurücktragenp.php">
+                    <form method="post" action="processing/zurücktragenp.php">
                         <p>Dein letzter Eintrag: </p>
                         <p><?php
                         $sql = "SELECT * FROM eintrag WHERE uid='$uid' AND isback IS NULL";
