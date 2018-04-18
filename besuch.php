@@ -55,14 +55,14 @@ $uid = $_SESSION['uid'];
         <?php
         if(!empty($_GET['src'])){
             if($_GET['src'] == "besuch"){
-                echo "<div class='alert alert-success' role='alert'>Besuch wurde erfolgreich bestätigt.</div>";
+                echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Besuch wurde erfolgreich bestätigt.</div>";
             }
         }
         ?>
         <div class="page-header">
   <h1>Unbestätigte Besuchsankündigungen (<?php
                 
-                $sql = "SELECT COUNT(name) FROM gast WHERE bestaetigt IS NULL";
+                $sql = "SELECT COUNT(name) FROM gast WHERE bestaetigt=0";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
                 echo $row['COUNT(name)'];
@@ -72,7 +72,7 @@ $uid = $_SESSION['uid'];
     
         <br>
         <?php
-        $sql = "SELECT * FROM gast WHERE bestaetigt IS NULL";
+        $sql = "SELECT * FROM gast WHERE bestaetigt=0";
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_assoc($result)){
             $id = $row['id'];

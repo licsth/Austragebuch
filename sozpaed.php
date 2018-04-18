@@ -42,7 +42,7 @@ $uid = $_SESSION['uid'];
             <li><a href="besuch.php">Besuchsankündigungen 
                 <?php
                 
-                $sql = "SELECT COUNT(name) FROM gast WHERE bestaetigt IS NULL";
+                $sql = "SELECT COUNT(name) FROM gast WHERE bestaetigt=0";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
                 $count = $row['COUNT(name)'];
