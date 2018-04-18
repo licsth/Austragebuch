@@ -140,6 +140,24 @@ $uid = $_SESSION['uid'];
                     
                     $wg = $row['wg'];
                     $away = $row['away'];
+                    $date = DateTime::createFromFormat('Y-m-d H:i:s', $away);
+                    
+                    //Formatierung des Datums
+                    //Nur Uhrzeit für heutige Einträge
+                    if($date->format('d.m.Y') == date('d.m.Y')){
+                        $away = $date->format('H:i') . " Uhr";
+                    }
+                    //Wochentag und Uhrzeit für Einträge dieser Woche
+                    else if(intval(DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'))->diff($date)->format('%d')) < 6){
+                        $away = $date->format('D, H:i') . " Uhr";
+                    }
+                    //Komplettes Datum für alle anderen Einträge
+                    else{
+                        $away = $date->format('D, d. M, H:i') . " Uhr";
+
+                    }
+                    (DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'))->modify('-1 day'))->format('d.m.y') == $date->format('d.m.Y');
+                    
                     $back = $row['back'];
                     $absprache = $row['absprache'];
                     $wohin = $row['wohin'];

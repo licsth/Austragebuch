@@ -80,6 +80,8 @@ $uid = $_SESSION['uid'];
             $zeitraum = $row['zeitraum'];
             $uid = $row['schueler_uid'];
             $antrag = $row['antrag'];
+            $date = DateTime::createFromFormat('Y-m-d H:i:s', $antrag);
+            $antrag = $date->format('D, d. M y, H:i') . " Uhr";
 
             $sql2 = "SELECT * FROM user WHERE uid='$uid'";
             $result2 = mysqli_query($conn, $sql2);
@@ -97,6 +99,8 @@ $uid = $_SESSION['uid'];
         </div>
         
         ";
+            
+            
         }
         ?>
             
