@@ -54,7 +54,7 @@ CREATE TABLE gast(
   aktuell BOOLEAN DEFAULT 1);
 ```
 
-## Nutzerregistrierung
+# Nutzerregistrierung
 
 ### Über Benutzeroberfläche
 Der Ordner "Verworfen" enthält Dateien, die nicht in die eigentliche Seite integriert wurden, die aber trotzdem nützlich sein könnten, wie zum Beispiel die Registrierung von Schülern und SozPäds über eine benutzerfreundliche Oberfläche. Diese Funktion ist vollständig funktionsfähig und kann genutzt werden, indem ihr die Seite localhost/Austragebuch/Verworfen/schuelerregister.php bzw. sozpaedregister.php aufruft.
