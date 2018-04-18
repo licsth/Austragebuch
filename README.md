@@ -20,7 +20,7 @@ CREATE TABLE eintrag(
   back VARCHAR(100) NOT NULL,
   absprache VARCHAR(50) DEFAULT NULL,
   wohin VARCHAR(100) NOT NULL,
-  isback BOOLEAN DEFAULT NULL);
+  isback BOOLEAN DEFAULT 0);
 ```
 Für die Schüler-Tabelle:
 ```MySQL
