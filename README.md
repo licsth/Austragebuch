@@ -1,5 +1,7 @@
 # Digitales Austragebuch
+
 Datenbankenprojekt Info-LK Q2 von Jule und Linda.
+
 # Setup
 ## Dateistruktur
 Um das digitale Austragebuch zum Laufen zu bringen, alle Dateien in einem Ordner auf einen Server laden bzw. in den htdocs-Ordner bei XAMPP kopieren.
@@ -52,17 +54,21 @@ CREATE TABLE gast(
   aktuell BOOLEAN DEFAULT 1);
 ```
 
+## Nutzerregistrierung
+
+### Über Benutzeroberfläche
+Der Ordner "Verworfen" enthält Dateien, die nicht in die eigentliche Seite integriert wurden, die aber trotzdem nützlich sein könnten, wie zum Beispiel die Registrierung von Schülern und SozPäds über eine benutzerfreundliche Oberfläche. Diese Funktion ist vollständig funktionsfähig und kann genutzt werden, indem ihr die Seite localhost/Austragebuch/Verworfen/schuelerregister.php bzw. sozpaedregister.php aufruft.
+
+Wenn ihr die automatische Registrierfunktion benutzt, werden neue Schüler automatisch als vorname.nachname und SozPäds als ersterBuchstabeVorname.nachname registriert, das Passwort ist identisch mit dem Nutzernamen.
+
+### Mit MySQL
+Im Ordner "Sonstiges" befindet sich eine Liste mit korrekten SQL-Befehlen, um alle aktuellen Schüler der Q2 und Q4 zu registrieren. 
+
+Anderweitig ist es ebenso möglich, Schüler und SozPäds manuell zu registrieren.
+
 # Anmerkungen
 #### Passwörter
 Die Passwörter werden unverschlüsselt als reiner Text gespeichert. Wer dies ändern möchte, kann die Länge des Passwortes (pwd) anpassen und muss auf der loginp.php-Seite eine Verschlüsselung einbauen.
 
 #### Servereigenschaften
 Sollte euer Server nicht localhost heißen, oder habt ihr an den Zugangsdaten etwas verändert (also Benutzername nicht "root" und/oder Passwort nicht leer), könnt ihr dies in der Datei dbh.php ändern.
-
-#### Registrierung von Nutzern
-Der Ordner "Verworfen" enthält Dateien, die nicht in die eigentliche Seite integriert wurden, die aber trotzdem nützlich sein könnten, wie zum Beispiel die Registrierung von Schülern und SozPäds über eine benutzerfreundliche Oberfläche. Diese Funktion ist vollständig funktionsfähig und kann genutzt werden, indem ihr die Seite localhost/Austragebuch/Verworfen/schuelerregister.php bzw. sozpaedregister.php aufruft.
-
-Wenn ihr die automatische Registrierfunktion benutzt, werden neue Schüler automatisch als vorname.nachname und SozPäds als ersterBuchstabeVorname.nachname registriert, das Passwort ist identisch mit dem Nutzernamen.
-
-### Schülerliste
-Im Ordner "Sonstiges" befindet sich eine Liste mit korrekten SQL-Befehlen, um alle aktuellen Schüler der Q2 und Q4 zu registrieren.
