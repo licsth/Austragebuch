@@ -62,7 +62,7 @@ Der Ordner "Verworfen" enthält Dateien, die nicht in die eigentliche Seite inte
 Wenn ihr die automatische Registrierfunktion benutzt, werden neue Schüler automatisch als vorname.nachname und SozPäds als ersterBuchstabeVorname.nachname registriert, das Passwort ist identisch mit dem Nutzernamen.
 
 ### Mit MySQL
-Im Ordner "Sonstiges" befindet sich eine Liste mit korrekten SQL-Befehlen, um alle aktuellen Schüler der Q2 und Q4 zu registrieren. 
+Im Ordner "Sonstiges" befindet sich eine Liste mit korrekten SQL-Befehlen, um alle aktuellen Schüler der Q2 und Q4 zu registrieren. Dabei werden die Schüler als vorname.nachname eingespeichert, das Passwort ist identisch.
 
 Anderweitig ist es ebenso möglich, Schüler und SozPäds manuell zu registrieren.
 
