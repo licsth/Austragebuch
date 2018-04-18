@@ -63,3 +63,6 @@ Sollte euer Server nicht localhost heißen, oder habt ihr an den Zugangsdaten et
 Der Ordner "Verworfen" enthält Dateien, die nicht in die eigentliche Seite integriert wurden, die aber trotzdem nützlich sein könnten, wie zum Beispiel die Registrierung von Schülern und SozPäds über eine benutzerfreundliche Oberfläche. Diese Funktion ist vollständig funktionsfähig und kann genutzt werden, indem ihr die Seite localhost/Austragebuch/Verworfen/schuelerregister.php bzw. sozpaedregister.php aufruft.
 
 Wenn ihr die automatische Registrierfunktion benutzt, werden neue Schüler automatisch als vorname.nachname und SozPäds als ersterBuchstabeVorname.nachname registriert, das Passwort ist identisch mit dem Nutzernamen.
+
+### Schülerliste
+Im Ordner "Sonstiges" befindet sich eine Liste mit korrekten SQL-Befehlen, um alle aktuellen Schüler der Q2 und Q4 zu registrieren.
