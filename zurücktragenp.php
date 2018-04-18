@@ -11,7 +11,7 @@ else {
     else{
         include 'dbh.php';
         $uid = $_SESSION['uid'];
-        $sql = "UPDATE eintrag SET isback=1 WHERE uid='$uid' AND isback IS NULL";
+        $sql = "UPDATE eintrag SET isback=1 WHERE uid='$uid' AND isback IS NULL OR isback=0";
         $result = mysqli_query($conn, $sql);
         
         $sql = "UPDATE schueler SET ausgetragen=NULL WHERE uid='$uid'";
