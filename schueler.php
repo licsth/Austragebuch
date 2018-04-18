@@ -104,7 +104,7 @@
         </div>
         <?php
         
-        $sql = "SELECT name, zeitraum FROM gast WHERE schueler_uid='$uid' AND bestaetigt IS NULL";
+        $sql = "SELECT name, zeitraum FROM gast WHERE schueler_uid='$uid' AND bestaetigt=0";
         $result = mysqli_query($conn, $sql);
         
         while($row = mysqli_fetch_assoc($result)){
