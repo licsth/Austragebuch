@@ -32,7 +32,7 @@ CREATE TABLE schueler(
   first VARCHAR(50) NOT NULL,
   last VARCHAR(50) NOT NULL,
   wg VARCHAR(3) NOT NULL,
-  ausgetragen BOOLEAN DEFAULT NULL);
+  ausgetragen BOOLEAN DEFAULT 0);
 ```
 Für die SozPäd-Tabelle:
 ```MySQL
