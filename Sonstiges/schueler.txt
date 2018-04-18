@@ -4,7 +4,7 @@ INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('justin.jupe', 'justin.j
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('quentin.oschatz', 'quentin.oschatz', 'Quentin', 'Oschatz', '4.0');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('luise.welker', 'luise.welker', 'Luise', 'Welker', '8.1');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('eva.nachtsheim', 'eva.nachtsheim', 'Eva', 'Nachtsheim', '3.1');
-INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('nick david.hartmann', 'nick david.hartmann', 'Nick David', 'Hartmann', '7.0');
+INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('nick.hartmann', 'nick.hartmann', 'Nick‘, 'Hartmann', '7.0');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('oliver.theobald', 'oliver.theobald', 'Oliver', 'Theobald', '9.1');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('kaspar.wagner', 'kaspar.wagner', 'Kaspar', 'Wagner', '6.0');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('andreas.petrea', 'andreas.petrea', 'Andreas', 'Petrea', '4.0');
@@ -76,7 +76,7 @@ INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('raymond.chen', 'raymond
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('brook.tewolde', 'brook.tewolde', 'Brook', 'Tewolde', '4.2');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('raul.rao', 'raul.rao', 'Raul', 'Rao', '8.0');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('julia .haneberg', 'julia .haneberg', 'Julia ', 'Haneberg', '1.1');
-INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('julia.kimakowitz', 'julia.kimakowitz', 'Julia', 'Kimakowitz', '6.1');
+INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('julia.kimakowitz', 'julia.kimakowitz', 'Julia', ‚von Kimakowitz', '6.1');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('konstantin.griep', 'konstantin.griep', 'Konstantin', 'Griep', '9.0');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('hannah.kraus', 'hannah.kraus', 'Hannah', 'Kraus', '7.2');
 INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('viktor.otto', 'viktor.otto', 'Viktor', 'Otto', '8.0');
