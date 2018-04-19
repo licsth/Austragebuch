@@ -148,7 +148,7 @@ $uid = $_SESSION['uid'];
                     //Formatierung des Datums
                     //Nur Uhrzeit für heutige Einträge
                     if($date->format('d.m.Y') == date('d.m.Y')){
-                        $away = $date->format('H:i') . " Uhr";
+                        $away = "Heute, " . $date->format('H:i') . " Uhr";
                     }
                     //Wochentag und Uhrzeit für Einträge dieser Woche
                     else if(intval(DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'))->diff($date)->format('%d')) < 6){
@@ -159,7 +159,6 @@ $uid = $_SESSION['uid'];
                         $away = $date->format('D, d. M Y, H:i') . " Uhr";
 
                     }
-                    (DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'))->modify('-1 day'))->format('d.m.y') == $date->format('d.m.Y');
                     
                     $back = $row['back'];
                     $absprache = $row['absprache'];
