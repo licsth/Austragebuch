@@ -131,7 +131,7 @@ $uid = $_SESSION['uid'];
                     $id = $row['id'];
                     $uid = $row['uid'];
                     
-                    $sql2 = "SELECT * FROM user WHERE uid='$uid'";
+                    $sql2 = "SELECT * FROM schueler WHERE uid='$uid'";
                     $result2 = mysqli_query($conn, $sql2);
                     $row2 = mysqli_fetch_assoc($result2);
                     
