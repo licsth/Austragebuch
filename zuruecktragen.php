@@ -15,8 +15,9 @@ include 'dbh.php';
 </head>
 <body role="document">
     <div class="container theme-showcase" role="main">
-<a href="schueler.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a><br><br>
+<br><br>
             <div class="row">
+                <a href="schueler.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
                 <div class="login col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-3">
                     <h2>Zurücktragen</h2>
                     <form method="post" action="processing/zurücktragenp.php">
