@@ -48,16 +48,19 @@ $uid = $_SESSION['uid'];
           <ul class="nav navbar-nav">
             <li><a href="sozpaed.php">Start <span class="sr-only">(aktuell)</span></a></li>
             <li class="active"><a href="#">Austragebuch</a></li>
-            <li><a href="besuch.php">Besuchsankündigungen <span class="badge">
+            <li><a href="besuch.php">Besuchsankündigungen 
                 <?php
                 
                 $sql = "SELECT COUNT(name) FROM gast WHERE bestaetigt=0";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
-                echo $row['COUNT(name)'];
+                $count = $row['COUNT(name)'];
+                if($count > 0){
+                    echo "<span class='badge'>$count</span>";
+                }
                 
                 ?>
-                </span></a></li>
+                </a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
