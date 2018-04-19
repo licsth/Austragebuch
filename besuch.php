@@ -90,7 +90,7 @@ $uid = $_SESSION['uid'];
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $antrag);
             $antrag = $date->format('D, d. M Y, H:i') . " Uhr";
 
-            $sql2 = "SELECT * FROM user WHERE uid='$uid'";
+            $sql2 = "SELECT * FROM schueler WHERE uid='$uid'";
             $result2 = mysqli_query($conn, $sql2);
             $row2 = mysqli_fetch_assoc($result2);
 
