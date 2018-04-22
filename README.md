@@ -16,7 +16,13 @@ Eine neue Datenbank mit Namen "Austragebuch" erstellen:
 CREATE DATABASE Austragebuch;
 ```
 
-Diese Datenbank umfasst die Tabellen eintrag, schueler, sozpaed und gast.
+Diese Datenbank umfasst die Tabellen eintrag, schueler, sozpaed, gast und wg.
+
+
+
+
+
+
 Für die Eintrag-Tabelle:
 
 ```sql
@@ -38,7 +44,7 @@ CREATE TABLE schueler(
   pwd VARCHAR(100) NOT NULL,
   first VARCHAR(50) NOT NULL,
   last VARCHAR(50) NOT NULL,
-  wg VARCHAR(3) NOT NULL,
+  wg VARCHAR(4) NOT NULL,
   ausgetragen BOOLEAN DEFAULT 0);
 ```
 
@@ -63,6 +69,16 @@ CREATE TABLE gast(
   bestaetigt BOOLEAN DEFAULT 0,
   antrag DATETIME DEFAULT CURRENT_TIMESTAMP,
   aktuell BOOLEAN DEFAULT 1);
+```
+
+Für die WG-Tabelle:
+
+```sql
+CREATE TABLE wg(
+    id VARCHAR(4) PRIMARY KEY NOT NULL,
+    sozpaed VARCHAR(100) NOT NULL,
+    mentor VARCHAR(100) NOT NULL
+);
 ```
 
 Die Befehle zur Erstellung der gesamten Tabellen finden sich auch gesammelt in der Datei Sonstiges/dbsetup.txt zum Kopieren und Ausführen.
