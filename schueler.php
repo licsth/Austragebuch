@@ -57,6 +57,7 @@
                 ?></li>
             <li><a href="gast.php">Gast anmelden</a></li>
             <li><a href="gaeste.php">Besuchsankündigungen</a></li>
+              <li><a href="defekte.php">Mängel &amp; Defekte</a></li>
           </ul>
             
           <ul class="nav navbar-nav navbar-right">

@@ -41,7 +41,7 @@
         <!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Start <span class="sr-only">(aktuell)</span></a></li>
+            <li><a href="schueler.php">Start <span class="sr-only">(aktuell)</span></a></li>
             <li><?php
                 if(!$ausgetragen){
                     echo "<a href='austragen.php'>
@@ -55,6 +55,7 @@
                 ?></li>
             <li><a href="gast.php">Gast anmelden</a></li>
             <li><a href="gaeste.php">Besuchsankündigungen</a></li>
+            <li class="active"><a href="#">Mängel &amp; Defekte</a></li>
           </ul>
             
           <ul class="nav navbar-nav navbar-right">
