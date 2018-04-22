@@ -30,7 +30,7 @@ if(!empty($_GET['err'])){
             <a href="<?php
                  echo $page;
                  ?>.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
-            <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-3">
+            <div class="col-lg-4 col-md-6 col-sm-8 center-block">
                 <h2>Passwort ändern</h2>
                 <p>
                     <?php
