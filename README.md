@@ -18,11 +18,6 @@ CREATE DATABASE Austragebuch;
 
 Diese Datenbank umfasst die Tabellen eintrag, schueler, sozpaed, gast und wg.
 
-
-
-
-
-
 Für die Eintrag-Tabelle:
 
 ```sql
@@ -77,7 +72,7 @@ Für die WG-Tabelle:
 CREATE TABLE wg(
     id VARCHAR(4) PRIMARY KEY NOT NULL,
     sozpaed VARCHAR(100) NOT NULL,
-    mentor VARCHAR(100) NOT NULL
+    mentor VARCHAR(5) NOT NULL
 );
 ```
 
