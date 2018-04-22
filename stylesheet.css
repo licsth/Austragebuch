@@ -1,17 +1,10 @@
-/*.navbar{
-    border-radius: 0;
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.nav, .nav li, .nav li a, .navbar-brand{
-    color: #602673 !important;
-    font-weight: 500;
+textarea.bg-danger,
+input.bg-danger{
+    border-color: rgba(200, 0, 0, 1);
 }
-
-.nav .dropdown-menu a{
-    color: #444 !important;
-    font-weight: 400;
-}
-
-.nav li a:hover{
-    color: #333 !important;
-}*/

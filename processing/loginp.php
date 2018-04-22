@@ -44,6 +44,7 @@ else{
         $_SESSION['role'] = 'schueler';
         $_SESSION['first'] = $row['first'];
         $_SESSION['last'] = $row['last'];
+        $_SESSION['wg'] = $row['wg'];
         header("Location: ../schueler.php");
     }
     else{
