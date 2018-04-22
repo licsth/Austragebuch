@@ -25,7 +25,7 @@ else {
             header('Location: ../austragen.php?err=empty');
         }
 
-        $sql = "INSERT INTO eintrag(uid, wg, back, absprache, wohin) VALUES ('$uid', '$wg', '$back', '$absprache', '$wohin')";
+        $sql = "INSERT INTO eintrag(uid, back, absprache, wohin) VALUES ('$uid', '$back', '$absprache', '$wohin')";
         $result = mysqli_query($conn, $sql);
         
         $sql = "UPDATE schueler SET ausgetragen=1 WHERE uid='$uid'";

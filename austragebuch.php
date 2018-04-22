@@ -140,8 +140,8 @@ $uid = $_SESSION['uid'];
                     
                     $first = $row2['first'];
                     $last = $row2['last'];
+                    $wg = $row2['wg'];
                     
-                    $wg = $row['wg'];
                     $away = $row['away'];
                     $date = DateTime::createFromFormat('Y-m-d H:i:s', $away);
                     
