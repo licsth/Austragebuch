@@ -33,7 +33,7 @@ CREATE TABLE wg(
 );
 CREATE TABLE paket(
 	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    ort VARCHAR(100),
-    schueler_uid VARCHAR(50) NOT NULL,
+    	ort VARCHAR(100),
+    	schueler_uid VARCHAR(50) NOT NULL,
 	aktuell BOOLEAN DEFAULT 1
 );
