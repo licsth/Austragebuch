@@ -1,5 +1,8 @@
 <?php
     session_start();
+
+include 'dbh.php';
+
 if(empty($_POST['mangel']) && empty($_POST['ort'])){
     header("Location: ../defekte.php?err=mo");
 } else if(empty($_POST['mangel'])){
@@ -13,6 +16,13 @@ else if(empty($_POST['ort'])){
     $last = $_SESSION['last'];
     $wg = $_SESSION['wg'];
     
+    $sql = "SELECT * FROM wg WHERE id='$wg'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    
+    $sozpaed = $row['sozpaed'];
+    $mentor = $row['mentor'];
+    
 $mangel = $_POST['mangel'];
 $ort = $_POST['ort'];
 $bemerkung = $_POST['bemerkung'];
@@ -25,6 +35,8 @@ $bemerkung = $_POST['bemerkung'];
     
     $text = "Name: $first $last<br>
     WG: $wg<br>
+    Sozialpädagoge: $sozpaed<br>
+    Mentor: $mentor<br>
     Datum: " . date('D, d.m.Y, h:i') . " Uhr<br>
     Mangel: $mangel<br>
     Ort: $ort <br>";
