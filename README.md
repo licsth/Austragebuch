@@ -16,7 +16,7 @@ Eine neue Datenbank mit Namen "Austragebuch" erstellen:
 CREATE DATABASE Austragebuch;
 ```
 
-Diese Datenbank umfasst die Tabellen eintrag, schueler, sozpaed, gast und wg.
+Diese Datenbank umfasst die Tabellen eintrag, schueler, sozpaed, gast, wg und paket.
 
 Für die Eintrag-Tabelle:
 
@@ -73,6 +73,16 @@ CREATE TABLE wg(
     id VARCHAR(4) PRIMARY KEY NOT NULL,
     sozpaed VARCHAR(100) NOT NULL,
     mentor VARCHAR(5) NOT NULL
+);
+```
+
+Für die Paket-Tabelle:
+
+```sql
+CREATE TABLE paket(
+	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    ort VARCHAR(100),
+    schueler_uid VARCHAR(50) NOT NULL
 );
 ```
 
