@@ -16,6 +16,7 @@ else {
         
         $sql = "UPDATE schueler SET ausgetragen=0 WHERE uid='$uid'";
         $result = mysqli_query($conn, $sql);
+        $_SESSION['ausgetragen'] = false;
         
         header("Location: ../schueler.php?src=zurücktragen");
     }
