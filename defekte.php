@@ -12,10 +12,7 @@
         $err = $_GET['err'];
     }
     $uid = $_SESSION['uid'];
-    $sql = "SELECT ausgetragen FROM schueler WHERE uid='$uid'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $ausgetragen = $row['ausgetragen'];
+    $ausgetragen = $_SESSION['ausgetragen'];
 ?>
 <html>
 <head>

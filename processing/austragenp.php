@@ -30,6 +30,7 @@ else {
         
         $sql = "UPDATE schueler SET ausgetragen=1 WHERE uid='$uid'";
         $result = mysqli_query($conn, $sql);
+        $_SESSION['ausgetragen'] = true;
         
         header("Location: ../schueler.php?src=austragen");
     }
