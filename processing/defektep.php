@@ -32,6 +32,11 @@ $bemerkung = $_POST['bemerkung'];
     if($bemerkung){
         $text .= "Bemerkung: $bemerkung";
     }
-    echo $text;
-    mail($empfaenger, $betreff, $text, $from);
+    //echo $text;
+    $mail = mail($empfaenger, $betreff, $text, $from);
+    if($mail){
+        header("Location: ../schueler.php?src=defekt");
+    } else{
+        header("Location: ../schueler.php?src=defektproblem");
+    }
 }?>
