@@ -80,9 +80,10 @@ Für die Paket-Tabelle:
 
 ```sql
 CREATE TABLE paket(
-	id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     ort VARCHAR(100),
-    schueler_uid VARCHAR(50) NOT NULL
+    schueler_uid VARCHAR(50) NOT NULL,
+  	aktuell BOOLEAN DEFAULT 1
 );
 ```
 

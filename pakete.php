@@ -1,15 +1,18 @@
 <?php
+//Laden der $_SESSION-Variable (speichert Daten der Session, also uid, Passwort, Ausgetragen etc.)
     session_start();
+//Connection für SQL
     include 'dbh.php';
+
+//Prüfung, ob Nutzer eingeloggt ist
     if(!isset($_SESSION['uid'])){
         header("Location: index.php");
     }
+//Prüfung, ob Nutzer ein Schüler ist
     if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     }
-    if(!$_SESSION['postdienst']){
-        header("Location: logout.php");
-    }
+//Speichern von Variablen, die später auf der Seite genutzt werden
     $ausgetragen = $_SESSION['ausgetragen'];
     $uid = $_SESSION['uid'];
 ?>
@@ -18,12 +21,12 @@
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="stylesheet.css" rel="stylesheet">
     <!-- Bootstrap-Theme -->
-    <title>Postdienst</title>
+    <title>Pakete</title>
 </head>
 <body role="document">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <!-- Titel und Schalter werden für eine bessere mobile Ansicht zusammengefasst -->
+        <!-- Menü -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Navigation ein-/ausblenden</span>
@@ -74,10 +77,12 @@
       </div><!-- /.container-fluid -->
     </nav>
     
+    <!-- Hauptcontainer, hier alle Inhalte der Seite einfügen -->
     <div class="container theme-showcase" role="main">
         <h1>Pakete</h1>
         
     </div>
+    <!-- Skripts: jQuery zum Ansteuern von Elementen auf der Seite und Bootstrap-Skript zum Beispiel für Dropdown-Menüs -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
