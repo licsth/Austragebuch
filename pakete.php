@@ -7,22 +7,18 @@
     if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     }
-    $err = '';
-    if(!empty($_GET['err'])){
-        $err = $_GET['err'];
+    if(!$_SESSION['postdienst']){
+        header("Location: logout.php");
     }
+    $ausgetragen = $_SESSION['ausgetragen'];
     $uid = $_SESSION['uid'];
-    $sql = "SELECT ausgetragen FROM schueler WHERE uid='$uid'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $ausgetragen = $row['ausgetragen'];
 ?>
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="stylesheet.css" rel="stylesheet">
     <!-- Bootstrap-Theme -->
-    <title>Mängel und Defekte</title>
+    <title>Postdienst</title>
 </head>
 <body role="document">
     <nav class="navbar navbar-default">
@@ -35,7 +31,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Austragebuch</a>
+          <a class="navbar-brand" href="schueler.php">Austragebuch</a>
         </div>
 
         <!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
@@ -55,13 +51,13 @@
                 ?></li>
             <li><a href="gast.php">Gast anmelden</a></li>
             <li><a href="gaeste.php">Besuchsankündigungen</a></li>
-            <li class="active"><a href="#">Mängel &amp; Defekte</a></li>
+              <li><a href="defekte.php">Mängel &amp; Defekte</a></li>
                <?php
                   if($_SESSION['postdienst']){
                       echo "<li><a href='postdienst.php'>Postdienst</a></li>";
                   }
                   ?>
-              <li><a href="pakete.php">Pakete</a></li>
+              <li class="active"><a href="#">Pakete</a></li>
           </ul>
             
           <ul class="nav navbar-nav navbar-right">
@@ -79,32 +75,8 @@
     </nav>
     
     <div class="container theme-showcase" role="main">
-        <h1>Mängel und Defekte</h1><br><br>
-        <form class="form center-block col-md-8" action="processing/defektep.php" method="post">
-            <div class="form-group">
-                <label for="mangel" class="control-label">*Mangel / Beschreibung</label>
-                <textarea rows="3" name="mangel" type="text" class="form-control
-                                                                    <?php
-                                                                    if($err=='mo' || $err=='mangel'){
-                                                                        echo " bg-danger";
-                                                                    }
-                                                                    ?>"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="ort" class="control-label">*Genauer Ort</label>
-                <input name="ort" type="text" class="form-control
-                                                                    <?php
-                                                                    if($err=='mo' || $err=='ort'){
-                                                                        echo " bg-danger";
-                                                                    }
-                                                                    ?>">
-            </div>
-            <div class="form-group">
-                <label for="bemerkung" class="control-label">Bemerkung zur Schadensentstehung</label>
-                <input name="bemerkung" type="text" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-default">Abschicken</button>
-        </form>
+        <h1>Pakete</h1>
+        
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>

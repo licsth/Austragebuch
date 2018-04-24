@@ -10,7 +10,7 @@
     if(!$_SESSION['postdienst']){
         header("Location: logout.php");
     }
-    
+    $ausgetragen = $_SESSION['ausgetragen'];
     $uid = $_SESSION['uid'];
 ?>
 <html>
@@ -18,7 +18,7 @@
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="stylesheet.css" rel="stylesheet">
     <!-- Bootstrap-Theme -->
-    <title>Willkommen</title>
+    <title>Postdienst</title>
 </head>
 <body role="document">
     <nav class="navbar navbar-default">
@@ -31,13 +31,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Austragebuch</a>
+          <a class="navbar-brand" href="schueler.php">Austragebuch</a>
         </div>
 
         <!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Start <span class="sr-only">(aktuell)</span></a></li>
+            <li><a href="schueler.php">Start <span class="sr-only">(aktuell)</span></a></li>
             <li><?php
                 if(!$ausgetragen){
                     echo "<a href='austragen.php'>
@@ -52,12 +52,7 @@
             <li><a href="gast.php">Gast anmelden</a></li>
             <li><a href="gaeste.php">Besuchsankündigungen</a></li>
               <li><a href="defekte.php">Mängel &amp; Defekte</a></li>
-              <li><?php
-                  if($_SESSION['postdienst']){
-                      echo "<a href='postdienst.php'>Postdienst</a>";
-                  }
-                  ?>
-              </li>
+              <li class="active"><a href='#'>Postdienst</a></li>
               <li><a href="pakete.php">Pakete</a></li>
           </ul>
             
@@ -76,53 +71,8 @@
     </nav>
     
     <div class="container theme-showcase" role="main">
-        <br>
-        <?php
-        if($src == 'austragen'){
-            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Du wurdest erfolgreich ausgetragen.</div>";
-        } else if($src == 'zurücktragen'){
-            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Du wurdest erfolgreich zurückgetragen.</div>";
-        } else if($src == 'gast'){
-            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Gast wurde erfolgreich angemeldet.</div>";
-        } else if($src == 'pwd'){
-            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Passwort wurde erfolgreich geändert.</div>";
-        } else if($src == 'defekt'){
-            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Defekt wurde erfolgreich gemeldet.</div>";
-        } else if($src == 'defektproblem'){
-            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Es ist ein Fehler aufgetreten, Defekt konnte nicht gemeldet werden.</div>";
-        }
-        ?>
-        <div class="jumbotron">
-            <h1><?php
-                echo "Hallo, $first.";
-	           ?>
-            </h1>
-            <p>
-                Willkommen im digitalen Austragebuch. 
-                <?php
-                if($ausgetragen){
-                    echo "Du bist zurzeit ausgetragen.";
-                } else{
-                    echo "Du bist nicht ausgetragen.";
-                }
-                ?>
-            </p>
-        </div>
-        <?php
+        <h1>Postdienst</h1>
         
-        $sql = "SELECT name, zeitraum FROM gast WHERE schueler_uid='$uid' AND bestaetigt=0";
-        $result = mysqli_query($conn, $sql);
-        
-        while($row = mysqli_fetch_assoc($result)){
-            $name = $row['name'];
-            $zeitraum = $row['zeitraum'];
-            echo "<div class='alert alert-warning alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button><strong>Hinweis!</strong> Dein Besuch von $name im Zeitraum $zeitraum wurde noch nicht bestätigt.</div>";
-        }
-        
-        ?>
-        <div class="row">
-            
-        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
