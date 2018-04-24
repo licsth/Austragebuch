@@ -1,7 +1,7 @@
 <?php
 //Laden der $_SESSION-Variable (speichert Daten der Session, also uid, Passwort, Ausgetragen etc.)
     session_start();
-//Connection für SQL
+//Connection für SQL ($conn)
     include 'dbh.php';
 
 //Prüfung, ob Nutzer eingeloggt ist

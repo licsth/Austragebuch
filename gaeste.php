@@ -84,15 +84,19 @@
         <h1>Deine Besuchsankündigungen</h1><br>
         <?php
         
+        //SQL-Befehl: wähle die Daten aller Gäste, die vom aktuelle angemeldeten Schüler angemeldet wurden und die aktuell sind (1 bedeutet als boolean true), ordne diese nach abfallender ID
         $sql = "SELECT name, zeitraum, bestaetigt, id FROM gast WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
         
+        //Solange es ein weiteres Ergebnis (row) gibt, wähle dieses aus und...
         while($row = mysqli_fetch_assoc($result)){
+            //...speichere Namen, Zeitraum, und ob er bestätigt ist
             $name = $row['name'];
             $zeitraum = $row['zeitraum'];
             $bestaetigt = $row['bestaetigt'];
             $id = $row['id'];
             
+            //gib ein Panel mit den Informationen aus
             echo "<div class='panel panel-info'><div class='panel-heading'>
     <h3 class='panel-title'>$zeitraum <span aria-hidden='true'><a href='processing/aktuell.php?id=$id' class='close'>&times;</a></span></h3>
   </div><div class='panel-body'>";
