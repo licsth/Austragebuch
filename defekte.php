@@ -56,6 +56,13 @@
             <li><a href="gast.php">Gast anmelden</a></li>
             <li><a href="gaeste.php">Besuchsankündigungen</a></li>
             <li class="active"><a href="#">Mängel &amp; Defekte</a></li>
+              <li><?php
+                  if($_SESSION['postdienst']){
+                      echo "<a href='postdienst.php'>Postdienst</a>";
+                  }
+                  ?>
+              </li>
+              <li><a href="pakete.php">Pakete</a></li>
           </ul>
             
           <ul class="nav navbar-nav navbar-right">

@@ -8,3 +8,4 @@ INSERT INTO sozpaed(uid, pwd, first, last) VALUES ('a.kaiser', 'a.kaiser', 'Anne
 INSERT INTO sozpaed(uid, pwd, first, last) VALUES ('e.leppla', 'e.leppla', 'Ekkehard', 'Leppla');
 INSERT INTO sozpaed(uid, pwd, first, last) VALUES ('r.schmid', 'r.schmid', 'Rita', 'Schmid');
 INSERT INTO sozpaed(uid, pwd, first, last) VALUES ('s.walter', 's.walter', 'Stephan', 'Walter');
+INSERT INTO sozpaed(uid, pwd, first, last) VALUES ('d.riedel', 'd.riedel', 'Daniele', 'Riedel');

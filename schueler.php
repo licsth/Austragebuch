@@ -14,10 +14,7 @@
     $first = $_SESSION['first'];
     $uid = $_SESSION['uid'];
 
-    $sql = "SELECT ausgetragen FROM schueler WHERE uid='$uid'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $ausgetragen = $row['ausgetragen'];
+    $ausgetragen = $_SESSION['ausgetragen'];
 ?>
 <html>
 <head>
@@ -58,6 +55,13 @@
             <li><a href="gast.php">Gast anmelden</a></li>
             <li><a href="gaeste.php">Besuchsankündigungen</a></li>
               <li><a href="defekte.php">Mängel &amp; Defekte</a></li>
+              <li><?php
+                  if($_SESSION['postdienst']){
+                      echo "<a href='postdienst.php'>Postdienst</a>";
+                  }
+                  ?>
+              </li>
+              <li><a href="pakete.php">Pakete</a></li>
           </ul>
             
           <ul class="nav navbar-nav navbar-right">
