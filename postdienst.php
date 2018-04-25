@@ -1,7 +1,6 @@
 <?php
     session_start();
     include 'dbh.php';
-include 'schuelerliste.php';
 
     if(!isset($_SESSION['uid'])){
         header("Location: index.php");
@@ -29,17 +28,17 @@ if(!empty($_GET['name'])){
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="stylesheet.css" rel="stylesheet">
     <title>Postdienst</title>
-    <link href="jquery-ui.min.css" rel="stylesheet" type="text/css" />
-<script src="jquery-ui.min.js"></script>
-    <script type="text/javascript">
-$(function() {
-    var availableTags = <?php include('schuelerliste.php'); ?>;
-    $("#name").autocomplete({
-        source: availableTags,
-        autoFocus:true
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    var availableTags = <?php include 'schuelerliste.php'; ?>;
+    $( "#tags" ).autocomplete({
+      source: availableTags
     });
-});
-</script>
+  } );
+  </script>
 </head>
 <body role="document">
     
@@ -104,7 +103,7 @@ $(function() {
         <form class="form center-block col-md-8" action="processing/paketep.php" method="post">
             <div class="form-group">
                 <label for="name" class="control-label">*Schüler</label><br>
-                <!--<input name="name" type="text" id="name" class="form-control
+                <input name="name" type="text" id="tags" class="form-control
                                                                     <?php
                                                                     if($src=='name'){
                                                                         echo " bg-danger";
@@ -113,15 +112,16 @@ $(function() {
                                                                     if($name!=''){
                                                                         echo "value='$name'";
                                                                     }
-                                                                    ?>>-->
-                <select name="name">
-                <?php
+                                                                    ?>>
+                <!--<select name="name">
+                <?php/*
                 foreach($array as $schueler){
                     echo "<option value='$schueler'>$schueler</option>";
-                }
+                }*/
                 ?>
-                </select>
+                </select>-->
             </div>
+        
             <div class="form-group">
                 <label for="ort" class="control-label">Paketort (falls nicht in deiner WG)</label>
                 <input name="ort" type="text" class="form-control">
@@ -131,7 +131,6 @@ $(function() {
         </form>
         
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>
