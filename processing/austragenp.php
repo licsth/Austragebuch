@@ -24,8 +24,60 @@ else {
         if(!$wohin || !$back){
             header('Location: ../austragen.php?err=empty');
         }
+        
+        if($date = DateTime::createFromFormat('D', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D, H:i *', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D H:i *', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D H:i', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D, H *', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D H *', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D H', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('d.m., H:i Uhr', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('d.m. H:i Uhr', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('H:i *', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('H:i', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('H *', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('H', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else{
+            header("Location: ../austragen.php?err=date&wohin=$wohin&back=$back&absprache=$absprache");
+            return;
+        }
 
-        $sql = "INSERT INTO eintrag(uid, back, absprache, wohin) VALUES ('$uid', '$back', '$absprache', '$wohin')";
+        $sql = "INSERT INTO eintrag(uid, back, absprache, wohin, isback) VALUES ('$uid', '$back', '$absprache', '$wohin', 0)";
         $result = mysqli_query($conn, $sql);
         
         $sql = "UPDATE schueler SET ausgetragen=1 WHERE uid='$uid'";
