@@ -20,7 +20,7 @@ include 'dbh.php';
                 <a href="schueler.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
                 <div class="col-lg-4 col-md-6 col-sm-8 center-block">
                     <h2>Zurücktragen</h2>
-                    <form method="post" action="processing/zurücktragenp.php">
+                    <form method="post" action="processing/zuruecktragenp.php">
                         <p>Dein letzter Eintrag: </p>
                         <p><?php
                         $sql = "SELECT * FROM eintrag WHERE uid='$uid' AND isback IS NULL";
