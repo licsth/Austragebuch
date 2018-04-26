@@ -156,16 +156,32 @@ $uid = $_SESSION['uid'];
                     //Wochentag und Uhrzeit für Einträge dieser Woche
                     else if(intval(DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'))->diff($date)->format('%d')) < 6){
                         $away = $date->format('D, H:i') . " Uhr";
-                        $away = $due = str_replace($en, $deshort, $away);
+                        $away = str_replace($en, $deshort, $away);
                     }
                     //Komplettes Datum für alle anderen Einträge
                     else{
                         $away = $date->format('D, d.m.Y, H:i') . " Uhr";
-                        $away = $due = str_replace($en, $deshort, $away);
-
+                        $away = str_replace($en, $deshort, $away);
                     }
                     
                     $back = $row['back'];
+                    $date = DateTime::createFromFormat('Y-m-d H:i:s', $back);
+                    //Formatierung des Datums
+                    //Nur Uhrzeit für heutige Einträge
+                    if($date->format('d.m.Y') == date('d.m.Y')){
+                        $back = "Heute, " . $date->format('H:i') . " Uhr";
+                    }
+                    //Wochentag und Uhrzeit für Einträge dieser Woche
+                    else if(intval(DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'))->diff($date)->format('%d')) < 6){
+                        $back = $date->format('D, H:i') . " Uhr";
+                        $back = str_replace($en, $deshort, $back);
+                    }
+                    //Komplettes Datum für alle anderen Einträge
+                    else{
+                        $back = $date->format('D, d.m.Y, H:i') . " Uhr";
+                        $back = str_replace($en, $deshort, $back);
+                    }
+                    
                     $absprache = $row['absprache'];
                     $wohin = $row['wohin'];
                     $isback = $row['isback'];
