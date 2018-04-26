@@ -6,7 +6,7 @@ if(!isset($_SESSION['uid']) || $_SESSION['role'] != 'schueler'){
     header("Location: logout.php");
 }    
 
-$name = $_POST['name'];
+$name = $_POST['schueler'];
 $name = str_replace("'", "\'", $name);
 $names = preg_split("/[\s,]+/", $name);
 
