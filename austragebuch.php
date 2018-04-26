@@ -144,6 +144,8 @@ $uid = $_SESSION['uid'];
                     
                     $away = $row['away'];
                     $date = DateTime::createFromFormat('Y-m-d H:i:s', $away);
+                    $en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                    $deshort = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
                     
                     //Formatierung des Datums
                     //Nur Uhrzeit für heutige Einträge
@@ -153,10 +155,12 @@ $uid = $_SESSION['uid'];
                     //Wochentag und Uhrzeit für Einträge dieser Woche
                     else if(intval(DateTime::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'))->diff($date)->format('%d')) < 6){
                         $away = $date->format('D, H:i') . " Uhr";
+                        $away = $due = str_replace($en, $deshort, $away);
                     }
                     //Komplettes Datum für alle anderen Einträge
                     else{
-                        $away = $date->format('D, d. M Y, H:i') . " Uhr";
+                        $away = $date->format('D, d.m.Y, H:i') . " Uhr";
+                        $away = $due = str_replace($en, $deshort, $away);
 
                     }
                     
