@@ -1,7 +1,7 @@
 <?php
 //Laden der $_SESSION-Variable (speichert Daten der Session, also uid, Passwort, Ausgetragen etc.)
     session_start();
-//Connection für SQL ($conn)
+//Connection für SQL
     include 'dbh.php';
 
 //Prüfung, ob Nutzer eingeloggt ist
@@ -19,7 +19,7 @@
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="style.css" rel="stylesheet">
+    <link href="stylesheet.css" rel="stylesheet">
     <!-- Bootstrap-Theme -->
     <title>Pakete</title>
 </head>
@@ -79,8 +79,23 @@
     
     <!-- Hauptcontainer, hier alle Inhalte der Seite einfügen -->
     <div class="container theme-showcase" role="main">
-        <h1>Pakete</h1>
+        <h1>Pakete</h1><br>
+        <?php
+         $sql = "SELECT id, ort FROM paket WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
+        $result = mysqli_query($conn, $sql);
         
+         while($row = mysqli_fetch_assoc($result)){
+            $ort = $row['ort'];
+            $id = $row['id'];
+             
+             echo "<div class='panel panel-info'><div class='panel-heading'>
+    <h3 class='panel-title'>$ort <span aria-hidden='true'><a href='processing/pakete_aktuell.php?id=$id' class='close'>&times;</a></span></h3>
+  </div><div class='panel-body'>";
+             
+             echo "Du hast ein Paket. Du findest es in <strong>$ort</strong>.";
+         }
+        
+        ?>
     </div>
     <!-- Skripts: jQuery zum Ansteuern von Elementen auf der Seite und Bootstrap-Skript zum Beispiel für Dropdown-Menüs -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
