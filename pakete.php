@@ -79,20 +79,31 @@
     
     <!-- Hauptcontainer, hier alle Inhalte der Seite einfügen -->
     <div class="container theme-showcase" role="main">
-        <h1>Pakete</h1><br>
+        <h1>Pakete <?php
+            $sql = "SELECT COUNT(*) FROM paket WHERE schueler_uid='$uid' AND aktuell=1";
+             $result = mysqli_query($conn, $sql);
+             $row = mysqli_fetch_assoc($result);
+             $anzahl = $row['COUNT(*)'];
+            echo "($anzahl)";
+            ?></h1><br>
         <?php
-         $sql = "SELECT id, ort FROM paket WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
+        
+         $sql = "SELECT id, ort, zeitpunkt FROM paket WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
         
          while($row = mysqli_fetch_assoc($result)){
             $ort = $row['ort'];
             $id = $row['id'];
+            $zeitpunkt = $row['zeitpunkt'];
+            $date = DateTime::createFromFormat('Y-m-d H:i:s', $zeitpunkt);
+            $zeitpunkt = $date -> format('d.m.Y');
              
-             echo "<div class='panel panel-info'><div class='panel-heading'>
-    <h3 class='panel-title'>$ort <span aria-hidden='true'><a href='processing/pakete_aktuell.php?id=$id' class='close'>&times;</a></span></h3>
+             echo "<div class='panel panel-info'>
+             <div class='panel-heading'>
+    <h3 class='panel-title'>Paket vom $zeitpunkt.<span aria-hidden='true'><a href='processing/pakete_aktuell.php?id=$id' class='close'>&times;</a></span></h3>
   </div><div class='panel-body'>";
              
-             echo "Du hast ein Paket. Du findest es in <strong>$ort</strong>.";
+             echo "Du hast ein Paket. Du findest es in <strong>$ort</strong>.</div></div>";
          }
         
         ?>
