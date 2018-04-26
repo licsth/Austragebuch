@@ -30,12 +30,12 @@ else {
                 $date = $date -> modify('+7 day');
             }
             $back = $date -> format('Y-m-d H:i:s');
-        } else if($date = DateTime::createFromFormat('D, H:i *', $back)){
+        } else if($date = DateTime::createFromFormat('D, H:i*', $back)){
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
             }
             $back = $date -> format('Y-m-d H:i:s');
-        } else if($date = DateTime::createFromFormat('D H:i *', $back)){
+        } else if($date = DateTime::createFromFormat('D H:i*', $back)){
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
             }
@@ -45,12 +45,27 @@ else {
                 $date = $date -> modify('+7 day');
             }
             $back = $date -> format('Y-m-d H:i:s');
-        } else if($date = DateTime::createFromFormat('D, H *', $back)){
+        }  else if($date = DateTime::createFromFormat('D, H.i*', $back)){
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
             }
             $back = $date -> format('Y-m-d H:i:s');
-        } else if($date = DateTime::createFromFormat('D H *', $back)){
+        } else if($date = DateTime::createFromFormat('D H.i*', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D H.i', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D, H*', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D H*', $back)){
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
             }
@@ -60,15 +75,31 @@ else {
                 $date = $date -> modify('+7 day');
             }
             $back = $date -> format('Y-m-d H:i:s');
-        } else if($date = DateTime::createFromFormat('d.m., H:i Uhr', $back)){
+        } else if($date = DateTime::createFromFormat('d.m., H:i*', $back)){
             $back = $date -> format('Y-m-d H:i:s');
-        } else if($date = DateTime::createFromFormat('d.m. H:i Uhr', $back)){
+        } else if($date = DateTime::createFromFormat('d.m., H:i', $back)){
             $back = $date -> format('Y-m-d H:i:s');
-        } else if($date = DateTime::createFromFormat('H:i *', $back)){
+        } else if($date = DateTime::createFromFormat('d.m., H.i*', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('d.m., H.i', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('d.m. H.i*', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('d.m. H.i', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('d.m., H.i*', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('d.m., H.i', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('H:i*', $back)){
             $back = $date -> format('Y-m-d H:i:s');
         } else if($date = DateTime::createFromFormat('H:i', $back)){
             $back = $date -> format('Y-m-d H:i:s');
-        } else if($date = DateTime::createFromFormat('H *', $back)){
+        } else if($date = DateTime::createFromFormat('H.i*', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('H.i', $back)){
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('H*', $back)){
             $back = $date -> format('Y-m-d H:i:s');
         } else if($date = DateTime::createFromFormat('H', $back)){
             $back = $date -> format('Y-m-d H:i:s');

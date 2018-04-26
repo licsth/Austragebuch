@@ -23,11 +23,13 @@ include 'dbh.php';
                     <form method="post" action="processing/zuruecktragenp.php">
                         <p>Dein letzter Eintrag: </p>
                         <p><?php
-                        $sql = "SELECT * FROM eintrag WHERE uid='$uid' AND isback IS NULL";
+                        $sql = "SELECT * FROM eintrag WHERE uid='$uid' AND isback=0";
                     $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_assoc($result);
                             $wohin = $row['wohin'];
                             $back = $row['back'];
+                            $date = DateTime::createFromFormat('Y-m-d H:i:s', $back);
+                            $back = $date -> format("H:m, d.m.Y");
                             echo "Wohin? $wohin. Wann zurück? $back."
                             ?></p>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>
