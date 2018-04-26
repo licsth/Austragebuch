@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Austragebuch</a>
+          <a class="navbar-brand" href="schueler.php">Austragebuch</a>
         </div>
 
         <!-- Alle Navigationslinks, Formulare und anderer Inhalt werden hier zusammengefasst und können dann ein- und ausgeblendet werden -->
@@ -59,7 +59,17 @@
                       echo "<li><a href='postdienst.php'>Postdienst</a></li>";
                   }
                   ?>
-              <li><a href="pakete.php">Pakete</a></li>
+              <li><a href="pakete.php">Pakete<?php
+                
+                $sql = "SELECT COUNT(*) FROM paket WHERE aktuell=1 AND schueler_uid='$uid'";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $count = $row['COUNT(*)'];
+                if($count > 0){
+                    echo " <span class='badge'>$count</span>";
+                }
+                
+                ?></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

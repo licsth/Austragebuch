@@ -61,7 +61,17 @@
                   }
                   ?>
               
-              <li><a href="pakete.php">Pakete</a></li>
+              <li><a href="pakete.php">Pakete<?php
+                
+                $sql = "SELECT COUNT(*) FROM paket WHERE aktuell=1 AND schueler_uid='$uid'";
+                $result = mysqli_query($conn, $sql);
+                $row = mysqli_fetch_assoc($result);
+                $count = $row['COUNT(*)'];
+                if($count > 0){
+                    echo " <span class='badge'>$count</span>";
+                }
+                
+                ?></a></li>
           </ul>
             
           <ul class="nav navbar-nav navbar-right">

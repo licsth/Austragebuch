@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <title>Login</title>
+    <title>Digitales Austragebuch - Login</title>
 </head>
 <body role="document" class="form">
     <div><br><br></div>
