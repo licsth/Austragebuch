@@ -103,7 +103,7 @@
     <h3 class='panel-title'>Paket vom $zeitpunkt.<span aria-hidden='true'><a href='processing/pakete_aktuell.php?id=$id' class='close'>&times;</a></span></h3>
   </div><div class='panel-body'>";
              
-             echo "Du hast ein Paket. Du findest es in <strong>$ort</strong>.</div></div>";
+             echo "Du hast ein Paket. <br>Ort: <strong>$ort</strong></div></div>";
          }
         
         ?>
