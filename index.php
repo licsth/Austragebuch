@@ -12,7 +12,7 @@
     <link href="style.css" rel="stylesheet">
     <title>Login</title>
 </head>
-<body role="document">
+<body role="document" class="form">
     <div><br><br></div>
     <?php
         $err = '';

@@ -11,7 +11,7 @@
     <link href="style.css" rel="stylesheet">
     <title>Gast anmelden</title>
 </head>
-<body role="document">
+<body role="document" class="form">
     <?php
         $err = '';
         if(!empty($_GET['err'])){

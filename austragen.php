@@ -20,7 +20,7 @@ if($err == 'date'){
     <link href="style.css" rel="stylesheet">
     <title>Austragen</title>
 </head>
-<body role="document">
+<body role="document" class="form">
     <div class="container theme-showcase" role="main">
 <br><br>
             <div class="row">

@@ -13,7 +13,7 @@ include 'dbh.php';
     <link href="style.css" rel="stylesheet">
     <title>Zurücktragen</title>
 </head>
-<body role="document">
+<body role="document" class="form">
     <div class="container theme-showcase" role="main">
 <br><br>
             <div class="row">

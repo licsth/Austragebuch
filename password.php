@@ -22,7 +22,7 @@ if(!empty($_GET['err'])){
     <link href="style.css" rel="stylesheet">
     <title>Passwort ändern</title>
 </head>
-<body role="document">
+<body role="document" class="form">
     
     <div class="container theme-showcase" role="main">
         
