@@ -17,7 +17,7 @@
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheet.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <!-- Bootstrap-Theme -->
     <title>Mängel und Defekte</title>
 </head>
@@ -45,7 +45,7 @@
                         Austragen
                     </a>";
                 } else{
-                    echo "<a href='zurücktragen.php'>
+                    echo "<a href='zuruecktragen.php'>
                         Zurücktragen
                     </a>";
                 }

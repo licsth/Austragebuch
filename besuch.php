@@ -16,6 +16,7 @@ $uid = $_SESSION['uid'];
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <title>Besuchsankündigungen</title>
 </head>
 <body role="document">

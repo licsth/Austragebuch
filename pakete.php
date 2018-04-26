@@ -19,7 +19,7 @@
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheet.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <!-- Bootstrap-Theme -->
     <title>Pakete</title>
 </head>

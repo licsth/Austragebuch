@@ -17,6 +17,7 @@ $uid = $_SESSION['uid'];
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <!-- Bootstrap-Theme -->
     <title>Willkommen</title>
 </head>
