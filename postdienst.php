@@ -26,8 +26,8 @@ if(!empty($_GET['name'])){
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="stylesheet.css" rel="stylesheet">
     <title>Postdienst</title>
+    <link href="style.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -65,7 +65,7 @@ if(!empty($_GET['name'])){
                         Austragen
                     </a>";
                 } else{
-                    echo "<a href='zurücktragen.php'>
+                    echo "<a href='zuruecktragen.php'>
                         Zurücktragen
                     </a>";
                 }
@@ -102,8 +102,8 @@ if(!empty($_GET['name'])){
         ?>
         <form class="form center-block col-md-8" action="processing/paketep.php" method="post">
             <div class="form-group">
-                <label for="name" class="control-label">*Schüler</label><br>
-                <input name="name" type="text" id="tags" class="form-control
+                <label for="schueler" class="control-label">*Schüler</label><br>
+                <input name="schueler" type="text" id="tags" class="form-control
                                                                     <?php
                                                                     if($src=='name'){
                                                                         echo " bg-danger";
