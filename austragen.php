@@ -3,6 +3,15 @@
     if(!isset($_SESSION['uid']) || $_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     } 
+    $err = '';
+    if(!empty($_GET['err'])){
+        $err = $_GET["err"];
+    }
+if($err == 'date'){
+    $wohin = $_GET['wohin'];
+    $back = $_GET['back'];
+    $absprache = $_GET['absprache'];
+}
 ?>
 <html>
 <head>
@@ -12,12 +21,6 @@
     <title>Austragen</title>
 </head>
 <body role="document">
-    <?php
-        $err = '';
-        if(!empty($_GET['err'])){
-            $err = $_GET["err"];
-        }
-    ?>
     <div class="container theme-showcase" role="main">
 <br><br>
             <div class="row">
@@ -30,9 +33,10 @@
                         }
                     ?>
                     <form method="post" action="processing/austragenp.php">
-                        <input type="text" class="form-control" placeholder="Wohin?" name="wohin">
-                        <input type='datetime' class="form-control" placeholder="Wann zurück?" name="back">
-                        <input type="text" class="form-control" placeholder="Absprache?" name="absprache"><br>
+                        <input type="text" class="form-control" placeholder="Wohin?" name="wohin"
+                               <?php if($err == 'date') echo " value=$wohin"; ?>>
+                        <input type='datetime' class="form-control" placeholder="Wann zurück?" name="back"<?php if($err == 'date') echo " value=$back id='wrong'"; ?>>
+                        <input type="text" class="form-control" placeholder="Absprache?" name="absprache"<?php if($err == 'date') echo " value=$absprache"; ?>><br>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>
                     </form>
                 </div>
