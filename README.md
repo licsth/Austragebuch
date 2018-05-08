@@ -40,7 +40,8 @@ CREATE TABLE schueler(
   first VARCHAR(50) NOT NULL,
   last VARCHAR(50) NOT NULL,
   wg VARCHAR(4) NOT NULL,
-  ausgetragen BOOLEAN DEFAULT 0);
+  ausgetragen BOOLEAN DEFAULT 0,
+	postdienst BOOLEAN DEFAULT 0);
 ```
 
 Für die SozPäd-Tabelle:

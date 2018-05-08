@@ -128,7 +128,7 @@ $uid = $_SESSION['uid'];
                 if($show == 'all'){
                     $sql = "SELECT * FROM eintrag WHERE away > CURDATE() - $anzahl ORDER BY id DESC";
                 } else{
-                    $sql = "SELECT * FROM eintrag WHERE isback IS NULL ORDER BY id DESC";
+                    $sql = "SELECT * FROM eintrag WHERE isback=0 OR isback IS NULL ORDER BY id DESC";
                 }
                 $result = mysqli_query($conn, $sql);
                 while($row = mysqli_fetch_assoc($result)){

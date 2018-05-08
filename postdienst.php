@@ -73,7 +73,13 @@ if(!empty($_GET['name'])){
             <li><a href="gast.php">Gast anmelden</a></li>
             <li><a href="gaeste.php">Besuchsankündigungen</a></li>
               <li><a href="defekte.php">Mängel &amp; Defekte</a></li>
-              <li class="active"><a href='#'>Postdienst</a></li>
+              <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Postdienst <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="active"><a href="#.php">Neues Paket</a></li>
+                <li><a href="post_bearbeitung.php">Pakete bearbeiten</a></li>
+              </ul>
+            </li>
               <li><a href="pakete.php">Pakete<?php
                 
                 $sql = "SELECT COUNT(*) FROM paket WHERE aktuell=1 AND schueler_uid='$uid'";
@@ -107,6 +113,8 @@ if(!empty($_GET['name'])){
         
         if($src == 'paket'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Paket wurde erfolgreich registriert.</div>";
+        } else if($src == 'paketerr'){
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Paket konnte nicht registriert werden.</div>";
         }
         
         ?>

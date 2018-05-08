@@ -29,6 +29,11 @@ if(!$row = mysqli_fetch_assoc($result)){
     $uid = $row['uid'];
     $sql = "INSERT INTO paket(schueler_uid, ort) VALUES ('$uid', '$ort')";
     $result = mysqli_query($conn, $sql);
-    header("Location: ../postdienst.php?src=paket");
+    if($result){
+        header("Location: ../postdienst.php?src=paket");
+    }
+    else{
+        header("Location: ../postdienst.php?src=paketerr");
+    }
 }
 ?>

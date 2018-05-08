@@ -1,28 +1,47 @@
 <?php
     session_start();
     include 'dbh.php';
+
     if(!isset($_SESSION['uid'])){
         header("Location: index.php");
     }
     if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     }
-    $src = '';
-    if(!empty($_GET['src'])){
-        $src = $_GET['src'];
+    if(!$_SESSION['postdienst']){
+        header("Location: logout.php");
     }
-    $first = $_SESSION['first'];
-    $uid = $_SESSION['uid'];
     $ausgetragen = $_SESSION['ausgetragen'];
+    $uid = $_SESSION['uid'];
+    
+    $src = '';
+if(!empty($_GET['src'])){
+    $src = $_GET['src'];
+}
+$name = '';
+if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+}
 ?>
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Postdienst</title>
     <link href="style.css" rel="stylesheet">
-    <!-- Bootstrap-Theme -->
-    <title>Willkommen</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    var availableTags = <?php include 'schuelerliste.php'; ?>;
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
 </head>
 <body role="document">
+    
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Titel und Schalter werden für eine bessere mobile Ansicht zusammengefasst -->
@@ -52,18 +71,15 @@
                 }
                 ?></li>
             <li><a href="gast.php">Gast anmelden</a></li>
-            <li class="active"><a href="#">Besuchsankündigungen</a></li>
+            <li><a href="gaeste.php">Besuchsankündigungen</a></li>
               <li><a href="defekte.php">Mängel &amp; Defekte</a></li>
-               <?php
-                  if($_SESSION['postdienst']){
-                      echo '<li class="dropdown">
+              <li class="dropdown active">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Postdienst <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="postdienst.php">Neues Paket</a></li>
-                <li><a href="post_bearbeitung.php">Pakete bearbeiten</a></li>
+                <li class="active"><a href="#.php">Pakete bearbeiten</a></li>
               </ul>
-            </li>';}
-                  ?>
+            </li>
               <li><a href="pakete.php">Pakete<?php
                 
                 $sql = "SELECT COUNT(*) FROM paket WHERE aktuell=1 AND schueler_uid='$uid'";
@@ -76,6 +92,7 @@
                 
                 ?></a></li>
           </ul>
+            
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
@@ -91,40 +108,31 @@
     </nav>
     
     <div class="container theme-showcase" role="main">
-        
-        <h1>Deine Besuchsankündigungen</h1><br>
+        <h1>Postdienst</h1><br>
         <?php
         
-        //SQL-Befehl: wähle die Daten aller Gäste, die vom aktuelle angemeldeten Schüler angemeldet wurden und die aktuell sind (1 bedeutet als boolean true), ordne diese nach abfallender ID
-        $sql = "SELECT name, zeitraum, bestaetigt, id FROM gast WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
+         $sql = "SELECT id, ort, zeitpunkt, schueler_uid FROM paket WHERE aktuell=1 ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
         
-        //Solange es ein weiteres Ergebnis (row) gibt, wähle dieses aus und...
-        while($row = mysqli_fetch_assoc($result)){
-            //...speichere Namen, Zeitraum, und ob er bestätigt ist
-            $name = $row['name'];
-            $zeitraum = $row['zeitraum'];
-            $bestaetigt = $row['bestaetigt'];
+         while($row = mysqli_fetch_assoc($result)){
+            $ort = $row['ort'];
             $id = $row['id'];
-            
-            //gib ein Panel mit den Informationen aus
-            echo "<div class='panel panel-info'><div class='panel-heading'>
-    <h3 class='panel-title'>$zeitraum <span aria-hidden='true'><a href='processing/aktuell.php?id=$id' class='close'>&times;</a></span></h3>
+            $zeitpunkt = $row['zeitpunkt'];
+            $date = DateTime::createFromFormat('Y-m-d H:i:s', $zeitpunkt);
+            $zeitpunkt = $date -> format('d.m.Y');
+             $uid = $row['schueler_uid'];
+             
+             echo "<div class='panel panel-info'>
+             <div class='panel-heading'>
+    <h3 class='panel-title'>Paket für $uid<span aria-hidden='true'><a href='pakete_bearbeitung.php?id=$id' class='close'><span class='glyphicon glyphicon-pencil'></span></a></span></h3>
   </div><div class='panel-body'>";
-            
-            if($bestaetigt) echo "<strong>Bestätigter</strong> ";
-            else echo "<strong>Unbestätigter</strong> ";
-                    
-            echo "Besuch von <strong>$name</strong>.
-                </div></div>";
-        }
+             
+             echo "Datum: <strong>$zeitpunkt</strong> <br>Ort: <strong>$ort</strong></div></div>";
+         }
         
         ?>
-        <div class="row">
-            
-        </div>
+        
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>

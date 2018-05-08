@@ -57,7 +57,14 @@
               <li><a href="defekte.php">Mängel &amp; Defekte</a></li>
               <?php
                   if($_SESSION['postdienst']){
-                      echo "<li><a href='postdienst.php'>Postdienst</a></li>";
+                      echo '<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Postdienst <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="postdienst.php">Neues Paket</a></li>
+                <li><a href="post_bearbeitung.php">Pakete bearbeiten</a></li>
+              </ul>
+            </li>';
+                          
                   }
                   ?>
               
@@ -69,6 +76,7 @@
                 $count = $row['COUNT(*)'];
                 if($count > 0){
                     echo " <span class='badge'>$count</span>";
+                    
                 }
                 
                 ?></a></li>

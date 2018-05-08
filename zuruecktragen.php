@@ -29,7 +29,7 @@ include 'dbh.php';
                             $wohin = $row['wohin'];
                             $back = $row['back'];
                             $date = DateTime::createFromFormat('Y-m-d H:i:s', $back);
-                            $back = $date -> format("H:m, d.m.Y");
+                            $back = $date -> format("H:i, d.m.Y");
                             echo "Wohin? $wohin. Wann zurück? $back."
                             ?></p>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>
