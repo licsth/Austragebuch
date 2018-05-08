@@ -18,27 +18,15 @@
 if(!empty($_GET['src'])){
     $src = $_GET['src'];
 }
-$name = '';
-if(!empty($_GET['name'])){
-    $name = $_GET['name'];
-}
+
 ?>
 <html>
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Postdienst</title>
     <link href="style.css" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    var availableTags = <?php include 'schuelerliste.php'; ?>;
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  } );
-  </script>
+
 </head>
 <body role="document">
     
@@ -108,7 +96,13 @@ if(!empty($_GET['name'])){
     </nav>
     
     <div class="container theme-showcase" role="main">
-        <h1>Postdienst</h1><br>
+        <?php if($src == 'del'){
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Paket wurde erfolgreich gelöscht.</div>";
+        } else if($src == 'paket'){
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Paketort wurde erfolgreich geändert.</div>";
+        }
+        ?>
+        <h1>Pakete bearbeiten</h1><br>
         <?php
         
          $sql = "SELECT id, ort, zeitpunkt, schueler_uid FROM paket WHERE aktuell=1 ORDER BY id DESC";
