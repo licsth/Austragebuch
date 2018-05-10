@@ -103,6 +103,7 @@
             $back = $date -> format('Y-m-d H:i:s');
         } else{
             echo "Date error";
+            return;
         }
 
         $sql = "INSERT INTO eintrag(uid, back, absprache, wohin, isback) VALUES ('$uid', '$back', '', '$wohin', 0)";

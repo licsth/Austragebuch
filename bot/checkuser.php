@@ -10,10 +10,10 @@ if(empty($_GET['id'])){
         echo "err: id";
     } else{
         if($row['ausgetragen']){
-            echo "err: ausgetragen";
+            echo "ausgetragen";
         }
         else{
-            echo "success";
+            echo "nicht ausgetragen";
         }
     }
 }
