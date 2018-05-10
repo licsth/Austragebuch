@@ -28,15 +28,14 @@ $id = $row['telegram_id'];
 <head>
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     </head>
-    <body>
+    <body class="form">
         
     <div class="container theme-showcase" role="main">
         <br>
         <div class="row">
-            <a href="<?php
-                 echo $page;
-                 ?>.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
+            <a href="schueler.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
             <div class="col-lg-4 col-md-6 col-sm-8 center-block">
     <h2>Telegram</h2>
                 <p>
@@ -45,13 +44,15 @@ $id = $row['telegram_id'];
                     ?>
                 </p>
                 <form method="post" action="processing/telegram.php">
+                    <div class="form-group">
                     <input type="text" class="form-control" placeholder="Telegram-ID" name="telegramId" <?php
                         
                         if($id != "" && $id != null){
                             echo "value='$id'";
                         }
                         
-                        ?>>
+                        ?>></div>
+                    <p>Bitte gib hier deine Telegram-ID an.</p>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>
                 </form>
             </div>
