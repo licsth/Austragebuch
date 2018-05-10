@@ -1,6 +1,6 @@
 <?php
 
-$date = DateTime::createFromFormat('H *', '13 Uhr');
-echo $date -> format('d.m.Y H:i');
+$today = new DateTime();
+echo $today -> modify('+1 day') -> format('D');
 
 ?>

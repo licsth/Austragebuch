@@ -2,11 +2,21 @@
     if(empty($_GET['id']) || empty($_GET['back']) || empty($_GET['wohin'])){
         echo "There was a problem: not all needed information given.";
     } else{
+        $en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        $deshort = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+        $delong = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+        $today = new DateTime();
+        $tomorrow = $today -> modify('+1 day') -> format('D');
+        
         $id = $_GET['id'];
         $back = $_GET['back'];
         $back = str_replace("%20", " ", $back);
+        //$back = str_replace("Morgen", $tomorrow, $back);
+        $back = str_replace($deshort, $en, $back);
+        $back = str_replace($delong, $en, $back);
         $wohin = $_GET['wohin'];
         $wohin = str_replace("%20", " ", $wohin);
+        
         
         include 'dbh.php';
         
@@ -43,7 +53,12 @@
                 $date = $date -> modify('+7 day');
             }
             $back = $date -> format('Y-m-d H:i:s');
-        }  else if($date = DateTime::createFromFormat('D, H.i*', $back)){
+        } else if($date = DateTime::createFromFormat('D, H.i*', $back)){
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D, H.i', $back)){
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
             }
