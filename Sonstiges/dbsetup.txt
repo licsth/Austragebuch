@@ -13,7 +13,8 @@ CREATE TABLE schueler(
   last VARCHAR(50) NOT NULL,
   wg VARCHAR(4) NOT NULL,
   ausgetragen BOOLEAN DEFAULT 0,
-	postdienst BOOLEAN DEFAULT 0);
+	postdienst BOOLEAN DEFAULT 0,
+	telegram_id INT DEFAULT NULL);
 CREATE TABLE sozpaed(
   uid VARCHAR(100) NOT NULL PRIMARY KEY,
   pwd VARCHAR(100) NOT NULL,

@@ -41,7 +41,9 @@ CREATE TABLE schueler(
   last VARCHAR(50) NOT NULL,
   wg VARCHAR(4) NOT NULL,
   ausgetragen BOOLEAN DEFAULT 0,
-	postdienst BOOLEAN DEFAULT 0);
+  postdienst BOOLEAN DEFAULT 0,
+	telegram_id INT DEFAULT NULL
+);
 ```
 
 Für die SozPäd-Tabelle:
