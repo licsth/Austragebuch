@@ -17,6 +17,6 @@ if(empty($_GET['id'])){
     $date = DateTime::createFromFormat('Y-m-d H:i:s', $back);
     $uhrzeit = $date -> format("H:i");
     $datum = $date -> format("d.m.Y");
-    echo "Wohin? $wohin. Wann zurück? $uhrzeit Uhr, $datum.";
+    echo "Wohin? <b>$wohin</b>. Wann zurück? <b>$uhrzeit Uhr</b>, $datum.";
 }
 ?>

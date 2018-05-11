@@ -16,6 +16,7 @@ if(!isset($_SESSION['uid'])){
     }
     
     $uid = strtolower($first) . "." . strtolower($last);
+    $pwd = password_hash($uid, PASSWORD_BCRYPT);
     
     $sql = "SELECT * FROM schueler WHERE uid='$uid'";
     $result = mysqli_query($conn, $sql);
@@ -24,9 +25,9 @@ if(!isset($_SESSION['uid'])){
         header("Location: schuelerregister.php?err=uid");
     } else{
 
-    $sql = "INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('$uid', '$uid', '$first', '$last', '$wg')";
+    $sql = "INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('$uid', '$pwd', '$first', '$last', '$wg')";
     $result = mysqli_query($conn, $sql);
-
+        
     header("Location: schuelerregister.php");
 }}
 ?>

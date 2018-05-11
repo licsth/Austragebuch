@@ -13,6 +13,13 @@ else {
 
         $wohin = $_POST["wohin"];
         $back = $_POST["back"];
+        $today = new DateTime();
+        $tomorrow = $today -> modify('+1 day') -> format('D');
+        $tomorrow = str_replace($en, $deshort, $tomorrow);
+        $en = [$tomorrow, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        $de = ['Morgen', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+        $back = str_replace($de, $en, $back);
+        
         $absprache = $_POST["absprache"];
         $uid = $_SESSION['uid'];
         
@@ -61,16 +68,29 @@ else {
             }
             $back = $date -> format('Y-m-d H:i:s');
         } else if($date = DateTime::createFromFormat('D, H*', $back)){
+            $hour = $date -> format("H");
+            $date = $date -> setTime($hour, 0);
+            while(new DateTime() > $date){
+                $date = $date -> modify('+7 day');
+            }
+            $back = $date -> format('Y-m-d H:i:s');
+        } else if($date = DateTime::createFromFormat('D, H', $back)){
+            $hour = $date -> format("H");
+            $date = $date -> setTime($hour, 0);
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
             }
             $back = $date -> format('Y-m-d H:i:s');
         } else if($date = DateTime::createFromFormat('D H*', $back)){
+            $hour = $date -> format("H");
+            $date = $date -> setTime($hour, 0);
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
             }
             $back = $date -> format('Y-m-d H:i:s');
         } else if($date = DateTime::createFromFormat('D H', $back)){
+            $hour = $date -> format("H");
+            $date = $date -> setTime($hour, 0);
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
             }
@@ -100,8 +120,12 @@ else {
         } else if($date = DateTime::createFromFormat('H.i', $back)){
             $back = $date -> format('Y-m-d H:i:s');
         } else if($date = DateTime::createFromFormat('H*', $back)){
+            $hour = $date -> format("H");
+            $date = $date -> setTime($hour, 0);
             $back = $date -> format('Y-m-d H:i:s');
         } else if($date = DateTime::createFromFormat('H', $back)){
+            $hour = $date -> format("H");
+            $date = $date -> setTime($hour, 0);
             $back = $date -> format('Y-m-d H:i:s');
         } else{
             header("Location: ../austragen.php?err=date&wohin=$wohin&back=$back&absprache=$absprache");

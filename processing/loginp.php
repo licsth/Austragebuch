@@ -1,4 +1,4 @@
-<?php
+<html><?php
 session_start();
 
 include 'dbh.php';
@@ -23,7 +23,7 @@ if(!$row = mysqli_fetch_assoc($result)){
         header('Location: ../index.php?err=user');
     }
     else{
-        if($row['pwd'] == $pwd){
+        if(password_verify($pwd, $row['pwd'])){
             $_SESSION['uid'] = $row['uid'];
             $_SESSION['pwd'] = $row['pwd'];
             $_SESSION['role'] = 'sozpaed';
@@ -38,7 +38,7 @@ if(!$row = mysqli_fetch_assoc($result)){
 }
 else{
     
-    if($row['pwd'] == $pwd){
+    if(password_verify($pwd, $row['pwd'])){
         $_SESSION['uid'] = $row['uid'];
         $_SESSION['pwd'] = $row['pwd'];
         $_SESSION['role'] = 'schueler';
@@ -54,4 +54,4 @@ else{
     }
 }
 }
-?>
+    ?></html>
