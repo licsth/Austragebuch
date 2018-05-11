@@ -112,8 +112,10 @@
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Defekt wurde erfolgreich gemeldet.</div>";
         } else if($src == 'defektproblem'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Es ist ein Fehler aufgetreten, Defekt konnte nicht gemeldet werden.</div>";
-        }else if($src == 'telegram'){
+        } else if($src == 'telegram'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Deine Telegram-ID wurde erfolgreich gespeichert.</div>";
+        } else if($src == 'index'){
+            echo "<div class='alert alert-info alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Bitte denke daran, dein Passwort zu ändern, um die Sicherheit deines Accounts zu gewähren.</div>";
         }
         ?>
         <div class="jumbotron">

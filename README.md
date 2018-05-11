@@ -36,13 +36,13 @@ Für die Schüler-Tabelle:
 ```sql
 CREATE TABLE schueler(
   uid VARCHAR(100) NOT NULL PRIMARY KEY,
-  pwd VARCHAR(100) NOT NULL,
+  pwd VARCHAR(60) NOT NULL,
   first VARCHAR(50) NOT NULL,
   last VARCHAR(50) NOT NULL,
   wg VARCHAR(4) NOT NULL,
   ausgetragen BOOLEAN DEFAULT 0,
   postdienst BOOLEAN DEFAULT 0,
-	telegram_id INT DEFAULT NULL
+    telegram_id INT DEFAULT NULL
 );
 ```
 

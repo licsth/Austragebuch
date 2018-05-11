@@ -30,6 +30,13 @@ if(!$row = mysqli_fetch_assoc($result)){
             $_SESSION['first'] = $row['first'];
             $_SESSION['last'] = $row['last'];
             header("Location: ../sozpaed.php");
+        } else if($row['pwd'] == $pwd && $pwd == $uid){
+            $_SESSION['uid'] = $row['uid'];
+            $_SESSION['pwd'] = $row['pwd'];
+            $_SESSION['role'] = 'sozpaed';
+            $_SESSION['first'] = $row['first'];
+            $_SESSION['last'] = $row['last'];
+            header("Location: ../sozpaed.php?src=index");
         }
         else{
             header("Location: ../index.php?err=user");
@@ -48,6 +55,16 @@ else{
         $_SESSION['postdienst'] = $row['postdienst'];
         $_SESSION['ausgetragen'] = $row['ausgetragen'];
         header("Location: ../schueler.php");
+    } else if($row['pwd'] == $pwd && $pwd == $uid){
+        $_SESSION['uid'] = $row['uid'];
+        $_SESSION['pwd'] = $row['pwd'];
+        $_SESSION['role'] = 'schueler';
+        $_SESSION['first'] = $row['first'];
+        $_SESSION['last'] = $row['last'];
+        $_SESSION['wg'] = $row['wg'];
+        $_SESSION['postdienst'] = $row['postdienst'];
+        $_SESSION['ausgetragen'] = $row['ausgetragen'];
+        header("Location: ../schueler.php?src=index");
     }
     else{
         header("Location: ../index.php?err=user");

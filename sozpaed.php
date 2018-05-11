@@ -72,7 +72,9 @@ $uid = $_SESSION['uid'];
         <br>
         <?php
         if($src == 'pwd'){
-            echo "<div class='alert alert-success' role='alert'>Passwort erfolgreich geändert.</div>";
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Passwort wurde erfolgreich geändert.</div>";
+        } else if($src == 'index'){
+            echo "<div class='alert alert-info alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Bitte denke daran, dein Passwort zu ändern, um die Sicherheit deines Accounts zu gewähren.</div>";
         }
         ?>
         <div class="jumbotron">
