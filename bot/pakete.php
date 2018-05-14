@@ -32,7 +32,7 @@ if(empty($_GET['id'])){
         $zeitpunkt = $row['zeitpunkt'];
         $date = DateTime::createFromFormat('Y-m-d H:i:s', $zeitpunkt);
         $zeitpunkt = $date -> format('d.m.Y');
-         echo "\nEin Paket vom <b>$zeitpunkt</b> mit Aufenthaltsort <b>$ort</b>";
+         echo "\nEin Paket vom <b>$zeitpunkt</b> mit Aufenthaltsort <b>$ort</b> /$id";
 }
 }
 ?>

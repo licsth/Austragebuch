@@ -11,5 +11,12 @@ $uid = $_SESSION['uid'];
         $sql = "UPDATE schueler SET telegram_id='$id' WHERE uid='$uid'";
         $result = mysqli_query($conn, $sql);
         header("Location: ../schueler.php?src=telegram");
-    } 
+    }
+else{
+    $sql = "UPDATE schueler SET telegram_id=NULL WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    header("Location: ../schueler.php?src=telegram");
+}
+        
+    //}
 ?>
