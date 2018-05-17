@@ -35,8 +35,8 @@ foreach($entries as $entry){
     } else{
 
     $sql = "INSERT INTO schueler(uid, pwd, first, last, wg) VALUES ('$uid', '$pwd', '$first', '$last', '$wg');";
-    //$result = mysqli_query($conn, $sql);
-        echo $sql;
+    $result = mysqli_query($conn, $sql);
+        
     }
     
 }

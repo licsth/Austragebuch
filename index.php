@@ -2,7 +2,7 @@
     session_start();
     if(isset($_SESSION['uid'])){
         $role = $_SESSION['role'];
-        header("Location: $role.php");
+        header("Location: $role/$role.php");
 } 
 ?>
 <html>

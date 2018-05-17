@@ -3,7 +3,6 @@ session_start();
 if(!isset($_SESSION['uid'])){
     header("Location: index.php");
 }
-$page = $_SESSION['role'];
 include 'dbh.php';
 $uid = $_SESSION['uid'];
                 
@@ -27,9 +26,7 @@ if(!empty($_GET['err'])){
     <div class="container theme-showcase" role="main">
         <br>
         <div class="row">
-            <a href="<?php
-                 echo $page;
-                 ?>.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
+            <a href="schueler.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
             <div class="col-lg-4 col-md-6 col-sm-8 center-block">
                 <h2>Passwort ändern</h2>
                 <p>

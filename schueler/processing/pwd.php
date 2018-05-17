@@ -6,7 +6,6 @@ if(!isset($_SESSION['uid'])){
 
 include 'dbh.php';
 $uid = $_SESSION['uid'];
-$role = $_SESSION['role'];
 
 $pwd = $_SESSION['pwd'];
 if(password_verify($_POST['old'], $pwd)){
@@ -14,10 +13,10 @@ if(password_verify($_POST['old'], $pwd)){
         $new = $_POST['new'];
         $new = str_replace("'", "\'", $new);
         $new = password_hash($new, PASSWORD_BCRYPT);
-        $sql = "UPDATE $role SET pwd='$new' WHERE uid='$uid'";
+        $sql = "UPDATE schueler SET pwd='$new' WHERE uid='$uid'";
         $result = mysqli_query($conn, $sql);
         $_SESSION['pwd'] = $new;
-        header("Location: ../$role.php?src=pwd");
+        header("Location: ../schueler.php?src=pwd");
     } else{
         header("Location: ../password.php?err=new");
     }
@@ -26,10 +25,10 @@ if(password_verify($_POST['old'], $pwd)){
         $new = $_POST['new'];
         $new = str_replace("'", "\'", $new);
         $new = password_hash($new, PASSWORD_BCRYPT);
-        $sql = "UPDATE $role SET pwd='$new' WHERE uid='$uid'";
+        $sql = "UPDATE schueler SET pwd='$new' WHERE uid='$uid'";
         $result = mysqli_query($conn, $sql);
         $_SESSION['pwd'] = $new;
-        header("Location: ../$role.php?src=pwd");
+        header("Location: ../schueler.php?src=pwd");
     } else{
         header("Location: ../password.php?err=new");
     }

@@ -29,14 +29,14 @@ if(!$row = mysqli_fetch_assoc($result)){
             $_SESSION['role'] = 'sozpaed';
             $_SESSION['first'] = $row['first'];
             $_SESSION['last'] = $row['last'];
-            header("Location: ../sozpaed/sozpaed.php");
+            header("Location: ../sozpaed.php");
         } else if($row['pwd'] == $pwd && $pwd == $uid){
             $_SESSION['uid'] = $row['uid'];
             $_SESSION['pwd'] = $row['pwd'];
             $_SESSION['role'] = 'sozpaed';
             $_SESSION['first'] = $row['first'];
             $_SESSION['last'] = $row['last'];
-            header("Location: ../sozpaed/sozpaed.php?src=index");
+            header("Location: ../sozpaed.php?src=index");
         }
         else{
             header("Location: ../index.php?err=user");
@@ -54,7 +54,7 @@ else{
         $_SESSION['wg'] = $row['wg'];
         $_SESSION['postdienst'] = $row['postdienst'];
         $_SESSION['ausgetragen'] = $row['ausgetragen'];
-        header("Location: ../schueler/schueler.php");
+        header("Location: ../schueler.php");
     } else if($row['pwd'] == $pwd && $pwd == $uid){
         $_SESSION['uid'] = $row['uid'];
         $_SESSION['pwd'] = $row['pwd'];
@@ -64,7 +64,7 @@ else{
         $_SESSION['wg'] = $row['wg'];
         $_SESSION['postdienst'] = $row['postdienst'];
         $_SESSION['ausgetragen'] = $row['ausgetragen'];
-        header("Location: ../schueler/schueler.php?src=index");
+        header("Location: ../schueler.php?src=index");
     }
     else{
         header("Location: ../index.php?err=user");
