@@ -1,6 +1,6 @@
 <?php
     session_start();
-
+//Ist der SozPäd angemeldet?
 include 'dbh.php';
 if(!isset($_SESSION['uid'])){
     header("Location: index.php");
@@ -14,6 +14,7 @@ if(!empty($_GET['show'])){
     $show = $_GET['show'];
 }
 
+//Anzahl der letzten Tage, sofern alle Einträge gezeigt werden
 $anzahl = 2;
 if(!empty($_GET['anzahl'])){
     $anzahl = $_GET['anzahl'];
@@ -83,6 +84,7 @@ $uid = $_SESSION['uid'];
             
 
                 <?php
+                //Informationen zur aktuellen Anzeige
                 if($show == 'all'){
                     echo "Einträge der letzten Tage";
                 } else{
@@ -93,6 +95,7 @@ $uid = $_SESSION['uid'];
         </div>
         <div class="row">
             <div class="col-md-3">
+                <!-- Checkbox, um nach ausgetragenen Schülern zu filtern -->
             <span><input type="checkbox" id="alleweg" onchange="change()" <?php
                if($show == 'away'){
                    echo "class='checked' checked";
@@ -102,6 +105,7 @@ $uid = $_SESSION['uid'];
             
             <?php
             if($show == 'all'){
+                //Anzahl der letzten Tage, sofern alle Einträge angezeigt werden
                 echo '
             <div class="col-md-4">
                 <form class="form-inline" action="processing/anzahltage.php" method="get">Anzahl anzuzeigender Tage: <input type="number" value="' . $anzahl . '" style="width:3em" name="anzahl"> <input  class="btn btn-default" style="transform:scale(.8)" type="submit" value="Ok"></form>
@@ -110,6 +114,7 @@ $uid = $_SESSION['uid'];
             ?>
         </div>
         <br>
+        <!-- Tabelle, die die Einträge enthält -->
         <table class="table table-striped">
             <thead>
               <tr>
@@ -126,12 +131,14 @@ $uid = $_SESSION['uid'];
             <tbody>
                 <?php
                 $sql = '';
+                //Einträge aus der Datenbank auswählen
                 if($show == 'all'){
                     $sql = "SELECT * FROM eintrag WHERE away > CURDATE() - $anzahl ORDER BY id DESC";
                 } else{
                     $sql = "SELECT * FROM eintrag WHERE isback=0 OR isback IS NULL ORDER BY id DESC";
                 }
                 $result = mysqli_query($conn, $sql);
+                //Für jeden Eintrag eine neue Zeile:
                 while($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
                     $uid = $row['uid'];
@@ -186,6 +193,7 @@ $uid = $_SESSION['uid'];
                     $absprache = $row['absprache'];
                     $wohin = $row['wohin'];
                     $isback = $row['isback'];
+                    //Zeile in der Tabelle
                     echo "<tr>
                     <td>$id</td><td>$first $last</td><td>$wg</td><td>$wohin</td><td>$away</td><td>$back</td><td>$absprache</td><td>";
                     if($isback){

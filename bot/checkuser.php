@@ -3,6 +3,10 @@ include 'dbh.php';
 if(empty($_GET['id'])){
         echo "err: empty";
 } else{
+    
+    //Gibt zurück, ob der User 
+    // a) im Austragebuch registriert ist
+    // b) ausgetragen ist
     $id = $_GET['id'];
     $sql = "SELECT * FROM schueler WHERE telegram_id='$id'";
     $result = mysqli_query($conn, $sql);

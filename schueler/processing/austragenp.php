@@ -1,25 +1,33 @@
 <?php
 session_start();
+//Tests: Ist der Nutzer angemeldet und ein Schüler? Wenn nein, abmelden
 if(!isset($_SESSION['uid'])){
     header("Location: logout.php");
+    return;
 } 
 else {
     $role = $_SESSION['role'];
-    if($role == 'admin' || $role == 'sozpaed'){
+    if($role != "schueler"){
         header("Location: logout.php");
+        return;
     } 
     else{
         include 'dbh.php';
 
+        //Auslesen der Informationen fü den Eintrag
         $wohin = $_POST["wohin"];
         $back = $_POST["back"];
         $today = new DateTime();
+        
+        //Datum mit allen möglichen Formaten formatieren:
+        //Wochentage
         $tomorrow = $today -> modify('+1 day') -> format('D');
         $tomorrow = str_replace($en, $deshort, $tomorrow);
         $en = [$tomorrow, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         $de = ['Morgen', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
         $back = str_replace($de, $en, $back);
         
+        //weitere Informationen speichern
         $absprache = $_POST["absprache"];
         $uid = $_SESSION['uid'];
         
@@ -32,6 +40,7 @@ else {
             header('Location: ../austragen.php?err=empty');
         }
         
+        //Datumsangaben formatieren
         if($date = DateTime::createFromFormat('D', $back)){
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
@@ -132,6 +141,7 @@ else {
             return;
         }
 
+        //Eintrag in die Datenbank einfügen
         $sql = "INSERT INTO eintrag(uid, back, absprache, wohin, isback) VALUES ('$uid', '$back', '$absprache', '$wohin', 0)";
         $result = mysqli_query($conn, $sql);
         

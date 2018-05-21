@@ -1,8 +1,10 @@
 <?php
     session_start();
+//Prüfung, ob der Nutzer angemeldet und ein Schüler ist
     if(!isset($_SESSION['uid']) || $_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     } 
+//Fehlermeldungen
     $err = '';
     if(!empty($_GET['err'])){
         $err = $_GET["err"];
@@ -28,10 +30,12 @@ if($err == 'date'){
                 <div class="col-lg-4 center-block col-md-6 col-sm-8">
                     <h2>Austragen</h2>
                     <?php
+                    //Fehlermeldung: nicht alle Felder augefüllt
                         if($err == 'empty'){
                             echo "<div class='alert alert-danger' role='alert'>Bitte gültige Werte eingeben.</div>";
                         }
                     ?>
+                    <!-- Formular zum austragen -->
                     <form method="post" action="processing/austragenp.php">
                         <input type="text" class="form-control" placeholder="Wohin?" name="wohin"
                                <?php if($err == 'date') echo " value=$wohin"; ?>>

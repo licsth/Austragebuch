@@ -1,4 +1,8 @@
 <?php
+//Prüfungen:
+//Ist der Nutzer angemeldet?
+//Ist der Nutzer ein Schüler?
+//Ist der Schüler vom Postdienst?
     session_start();
     include 'dbh.php';
 
@@ -32,6 +36,7 @@ if(!empty($_GET['name'])){
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
+      //Methode, um Schülernamen per Autocomplete vorzuschlagen
   $( function() {
     var availableTags = <?php include 'schuelerliste.php'; ?>;
     $( "#tags" ).autocomplete({
@@ -60,6 +65,7 @@ if(!empty($_GET['name'])){
           <ul class="nav navbar-nav">
             <li><a href="schueler.php">Start <span class="sr-only">(aktuell)</span></a></li>
             <li><?php
+                //individueller Menüpunkt Austragen / zurücktragen
                 if(!$ausgetragen){
                     echo "<a href='austragen.php'>
                         Austragen
@@ -111,7 +117,7 @@ if(!empty($_GET['name'])){
     <div class="container theme-showcase" role="main">
         <h1>Postdienst</h1><br>
         <?php
-        
+        //Hinweise & Meldungen
         if($src == 'paket'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Paket wurde erfolgreich registriert.</div>";
         } else if($src == 'paketerr'){
@@ -119,11 +125,13 @@ if(!empty($_GET['name'])){
         }
         
         ?>
+        <!-- Formular, um Pakete hinzuzufügen -->
         <form class="form center-block col-md-8" action="processing/paketep.php" method="post">
             <div class="form-group">
                 <label for="schueler" class="control-label">*Schüler</label><br>
                 <input name="schueler" type="text" id="tags" class="form-control
                                                                     <?php
+                                                                    //Roter Rahmen um das Feld, falls vorher ungültige Angaben gemacht wurden
                                                                     if($src=='name'){
                                                                         echo " bg-danger";
                                                                     }
@@ -132,13 +140,7 @@ if(!empty($_GET['name'])){
                                                                         echo "value='$name'";
                                                                     }
                                                                     ?>>
-                <!--<select name="name">
-                <?php/*
-                foreach($array as $schueler){
-                    echo "<option value='$schueler'>$schueler</option>";
-                }*/
-                ?>
-                </select>-->
+                
             </div>
         
             <div class="form-group">

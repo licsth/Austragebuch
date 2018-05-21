@@ -1,5 +1,10 @@
 package austragebuch;
+/**
+ * Emoji-Liste
+ *
+ */
 public enum Emoji {
+	
     // Emoticones group
     GRINNING_FACE_WITH_SMILING_EYES('\uD83D', '\uDE01'),
     FACE_WITH_TEARS_OF_JOY('\uD83D', '\uDE02'),
@@ -188,6 +193,10 @@ public enum Emoji {
         this.secondChar = secondChar;
     }
 
+    /**
+     * Emoji in String umwandeln, um ihn in einer Nachricht zu versenden
+     * @return Den Emoji als String
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -202,6 +211,9 @@ public enum Emoji {
         return sb.toString();
     }
     
+    /**
+     * Zufälligen netten Emoji auswählen
+     */
     public static String random(){
     	String[] emojis = {
     			GRINNING_FACE_WITH_SMILING_EYES.toString(),

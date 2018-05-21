@@ -1,4 +1,5 @@
 <?php
+//Tests: Ist der Nutzer angemeldet und Schüler?
     session_start();
     if(!isset($_SESSION['uid']) || $_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
@@ -20,9 +21,11 @@ include 'dbh.php';
                 <a href="schueler.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
                 <div class="col-lg-4 col-md-6 col-sm-8 center-block">
                     <h2>Zurücktragen</h2>
+                    <!-- Formular zum Zurücktragen -->
                     <form method="post" action="processing/zuruecktragenp.php">
                         <p>Dein letzter Eintrag: </p>
                         <p><?php
+                            //Letzten Eintrag wiedergeben zur Bestätigung
                         $sql = "SELECT * FROM eintrag WHERE uid='$uid' AND isback=0";
                     $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_assoc($result);

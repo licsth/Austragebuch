@@ -1,4 +1,5 @@
 <?php
+//Tests: Ist der Nutzer angemeldet und ein Schüler?
 session_start();
 if(!isset($_SESSION['uid'])){
     header("Location: index.php");
@@ -13,11 +14,13 @@ $uid = $_SESSION['uid'];
 $first = $_SESSION['first'];
 $last = $_SESSION['last'];
 
+//Fehlermeldungen
 $err = '';
 if(!empty($_GET['err'])){
     $err = $_GET['err'];
 }
 
+//Telegram-ID als Platzhalter
 $sql = "SELECT telegram_id FROM schueler WHERE uid='$uid'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -43,6 +46,7 @@ $id = $row['telegram_id'];
                     echo "Du bist eingeloggt als $first $last ($uid)."
                     ?>
                 </p>
+                <!-- Formular, um die assoziierte Telegram-ID hinzuzufügen, zu ändern oder zu löschen -->
                 <form method="post" action="processing/telegram.php">
                     <div class="form-group">
                     <input type="text" class="form-control" placeholder="Telegram-ID" name="telegramId" <?php

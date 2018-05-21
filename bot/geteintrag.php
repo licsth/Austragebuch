@@ -3,12 +3,14 @@ include 'dbh.php';
 if(empty($_GET['id'])){
         echo "err: empty";
 } else{
+    //Schüler-UID aus der Telegram-ID auslesen
     $id = $_GET['id'];
     $sql = "SELECT * FROM schueler WHERE telegram_id='$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $uid = $row['uid'];
     
+    //letzten Eintrag zum Schüler zurückgeben
     $sql = "SELECT * FROM eintrag WHERE uid='$uid' AND isback=0";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);

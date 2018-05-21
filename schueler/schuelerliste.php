@@ -1,4 +1,5 @@
 <?php
+//Liste aller registrierten Schüler für die Autocomplete-Funktion des Postdienst
 include 'dbh.php';
     $sql = mysqli_query($conn, "SELECT first, last FROM schueler");
 	$array = array();

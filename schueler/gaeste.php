@@ -1,5 +1,6 @@
 <?php
     session_start();
+//Test, ob Nutzer ein angemeldeter Schüler ist, Meldungen und Hinweise
     include 'dbh.php';
     if(!isset($_SESSION['uid'])){
         header("Location: index.php");
@@ -19,7 +20,6 @@
 <head>
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
-    <!-- Bootstrap-Theme -->
     <title>Willkommen</title>
 </head>
 <body role="document">

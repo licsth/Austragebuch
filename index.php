@@ -7,6 +7,7 @@
 ?>
 <html>
 <head>
+    <!-- Stylesheet- Dateien: bootstrap und eigene -->
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
@@ -15,6 +16,7 @@
 <body role="document" class="form">
     <div><br><br></div>
     <?php
+    //Fehlermeldungen
         $err = '';
         if(!empty($_GET['err'])){
             $err = $_GET["err"];
@@ -26,12 +28,14 @@
                 <div class="col-lg-4 center-block col-md-6  col-sm-8">
                     <h2>Einloggen</h2>
                     <?php
+                    //eventuelle Fehlermeldungen als Banner am Seitenanfang
                         if($err == 'login'){
                             echo "<div class='alert alert-danger' role='alert'>Bitte gültige Werte eingeben.</div>";
                         } else if($err == "user"){
                             echo "<div class='alert alert-danger' role='alert'>Benutzername oder Passwort sind inkorrekt.</div>";
                         }
                     ?>
+                    <!-- Login-Formular -->
                     <form method="post" action="processing/loginp.php">
                         <input type="text" class="form-control" placeholder="Benutzername" name="uid">
                         <input type="password" class="form-control" placeholder="Passwort" name="pwd"><br>

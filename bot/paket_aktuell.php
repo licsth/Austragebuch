@@ -9,6 +9,7 @@ if(empty($_GET['schueler_id']) || empty($_GET['paket_id'])){
     return;
 }
 
+//Prüfung, ob die Telegram-ID registriert ist
 $sql = "SELECT * FROM schueler WHERE telegram_id='$telegram_id'";
     $result = mysqli_query($conn, $sql);
     if(!$row = mysqli_fetch_assoc($result)){
@@ -17,6 +18,7 @@ $sql = "SELECT * FROM schueler WHERE telegram_id='$telegram_id'";
     }
 $uid = $row['uid'];
         
+//Prüfung, ob das angegebene Paket existiert
 $sql = "SELECT * FROM paket WHERE id=$paket_id";
     $result = mysqli_query($conn, $sql);
     if(!$row = mysqli_fetch_assoc($result)){
@@ -25,7 +27,9 @@ $sql = "SELECT * FROM paket WHERE id=$paket_id";
     }
 $schueler_uid = $row['schueler_uid'];
 
+//Prüfung, ob das angegebene Paket zu dem Schüler gehört
 if($uid == $schueler_uid){
+    //Paket als nicht mehr aktuell angeben
     $sql ="UPDATE paket SET aktuell=0 WHERE id=$paket_id";
     $result = mysqli_query($conn, $sql);
     echo "success";

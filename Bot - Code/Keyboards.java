@@ -8,10 +8,22 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 public class Keyboards {
 	
-	ReplyKeyboardMarkup main = new ReplyKeyboardMarkup();
-	ReplyKeyboardMarkup bool = new ReplyKeyboardMarkup();
-	ReplyKeyboardMarkup einstellungen = new ReplyKeyboardMarkup();
-	ReplyKeyboardMarkup postdienst = new ReplyKeyboardMarkup();
+	/**
+	 * Haupttastatur: Austragen, Zurücktragen, Pakete, Einstellungen
+	 */
+	public ReplyKeyboardMarkup main = new ReplyKeyboardMarkup();
+	/**
+	 * Tastatur Ja/Nein
+	 */
+	public ReplyKeyboardMarkup bool = new ReplyKeyboardMarkup();
+	/**
+	 * Einstellungs-Tastatur: Erinnerungen, Zurück
+	 */
+	public ReplyKeyboardMarkup einstellungen = new ReplyKeyboardMarkup();
+	/**
+	 * Postdienst-Tastatur: Pakete einsehen, Neues Paket registrieren
+	 */
+	public ReplyKeyboardMarkup postdienst = new ReplyKeyboardMarkup();
 	
 
 	public Keyboards() {
@@ -30,7 +42,6 @@ public class Keyboards {
 		KeyboardRow row4 = new KeyboardRow();
 		
 		row.add(new KeyboardButton().setText("Austragen"));
-		//row.add(new KeyboardButton().setText("B"));
 		row2.add(new KeyboardButton().setText("Zurücktragen"));
 		row5.add(new KeyboardButton().setText("Pakete"));
 		row21.add(new KeyboardButton().setText("Einstellungen"));
@@ -75,7 +86,14 @@ public class Keyboards {
 		
 	}
 	
-	public static ReplyKeyboardMarkup toKeyboard(String[][] buttons){
+	//TODO: Funktioniert aus unerfindlichen Gründen nicht
+	/**
+	 * Beta: zweidimensionales Array aus Strings zu Tastatur umwandeln
+	 * @param buttons Array mit Text für die Knöpfe der Tastatur
+	 * @return Eine entsprechende Tastatur
+	 */
+	@SuppressWarnings("unused")
+	private static ReplyKeyboardMarkup toKeyboard(String[][] buttons){
 		ArrayList<KeyboardRow> keyboard = new ArrayList<KeyboardRow>();
 		for(String[] row : buttons){
 			KeyboardRow kr = new KeyboardRow();

@@ -83,9 +83,9 @@
       </div><!-- /.container-fluid -->
     </nav>
     
-    <!-- Hauptcontainer, hier alle Inhalte der Seite einfügen -->
     <div class="container theme-showcase" role="main">
         <h1>Pakete <?php
+            //Anzahl Pakete in Klammern
             $sql = "SELECT COUNT(*) FROM paket WHERE schueler_uid='$uid' AND aktuell=1";
              $result = mysqli_query($conn, $sql);
              $row = mysqli_fetch_assoc($result);
@@ -94,6 +94,7 @@
             ?></h1><br>
         <?php
         
+        //Auswahl aller aktuellen Pakete
          $sql = "SELECT id, ort, zeitpunkt FROM paket WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
         
@@ -104,6 +105,7 @@
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $zeitpunkt);
             $zeitpunkt = $date -> format('d.m.Y');
              
+             //ein Panel für jedes aktuelle Paket mit Link zum löschen
              echo "<div class='panel panel-info'>
              <div class='panel-heading'>
     <h3 class='panel-title'>Paket vom $zeitpunkt.<span aria-hidden='true'><a href='processing/pakete_aktuell.php?id=$id' class='close'>&times;</a></span></h3>

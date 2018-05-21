@@ -1,4 +1,5 @@
 <?php
+//Tests: Ist der Nutzer angemeldet und ein Schüler?
     session_start();
     include 'dbh.php';
     if(!isset($_SESSION['uid'])){
@@ -7,6 +8,7 @@
     if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     }
+//Hinweise & Meldungen
     $src = '';
     if(!empty($_GET['src'])){
         $src = $_GET['src'];
@@ -56,6 +58,7 @@
             <li><a href="gaeste.php">Besuchsankündigungen</a></li>
               <li><a href="defekte.php">Mängel &amp; Defekte</a></li>
               <?php
+              //individueller Menüpunkt Postdienst
                   if($_SESSION['postdienst']){
                       echo '<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Postdienst <span class="caret"></span></a>
@@ -100,6 +103,7 @@
     <div class="container theme-showcase" role="main">
         <br>
         <?php
+        //Hinweise und Meldungen
         if($src == 'austragen'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Du wurdest erfolgreich ausgetragen.</div>";
         } else if($src == 'zurücktragen'){
@@ -118,6 +122,7 @@
             echo "<div class='alert alert-info alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Bitte denke daran, dein Passwort zu ändern, um die Sicherheit deines Accounts zu gewähren.</div>";
         }
         ?>
+        <!-- Jumbotron auf Begrüßungsseite -->
         <div class="jumbotron">
             <h1><?php
                 echo "Hallo, $first.";
@@ -136,6 +141,7 @@
         </div>
         <?php
         
+        //Hinweise auf unbestätigte Besuchsankündigungen
         $sql = "SELECT name, zeitraum FROM gast WHERE schueler_uid='$uid' AND bestaetigt=0";
         $result = mysqli_query($conn, $sql);
         

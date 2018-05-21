@@ -2,8 +2,11 @@
     if(empty($_GET['str'])){
         echo "There was a problem: not all needed information given.";
     } else{
+        
+        //Falls "Morgen" als Tag angegeben ist
         $today = new DateTime();
         $tomorrow = $today -> modify('+1 day') -> format('D');
+        //Übersetzung Deutsch-Englisch
         $en = [$tomorrow, 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
         $de = ['Morgen', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
     
@@ -11,6 +14,7 @@
         $str = str_replace("%20", " ", $str);
         $str = str_replace($de, $en, $str);
         
+        //DateTime-Objekt mit allen möglichen Datumsformaten für zukünftige Daten erstellen
         if($date = DateTime::createFromFormat('D', $str)){
             while(new DateTime() > $date){
                 $date = $date -> modify('+7 day');
@@ -112,6 +116,7 @@
             $date = $date -> setTime($hour, 0);
             $str = $date -> format('Y-m-d H:i:s');
         } else{
+            //Falls kein Format gepasst hat
             echo "Date error";
             return;
         }

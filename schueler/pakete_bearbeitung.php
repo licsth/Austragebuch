@@ -1,9 +1,13 @@
 <?php
+//Prüfungen:
+//Ist der Nutzer angemeldet?
+//Ist der Nutzer ein Schüler?
+//Ist der Schüler vom Postdienst?
     session_start();
     include 'dbh.php';
 
     if(!isset($_SESSION['uid'])){
-        header("Location: index.php");
+        header("Location: logout.php");
     }
     if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
@@ -31,6 +35,7 @@ $name = $row['first'] . " " . $row['last'];
     $ausgetragen = $_SESSION['ausgetragen'];
     $uid = $_SESSION['uid'];
     
+//Fehlermeldungen
     $err = '';
 if(!empty($_GET['err'])){
     $err = $_GET['err'];
@@ -44,6 +49,7 @@ if(!empty($_GET['err'])){
     <link href="style.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script>
+      //Bestätigungs-Popup wenn ein Paket gelöscht werden soll
       function del(){
           if(confirm("Möchtest du wirklich das Paket für <?php echo $name; ?> löschen?")){
               window.location = 'processing/paket_delete.php?id=<?php echo $id; ?>';
@@ -72,6 +78,7 @@ if(!empty($_GET['err'])){
           <ul class="nav navbar-nav">
             <li><a href="schueler.php">Start <span class="sr-only">(aktuell)</span></a></li>
             <li><?php
+                //individueller Menüpunkt Austragen/Zurücktragen
                 if(!$ausgetragen){
                     echo "<a href='austragen.php'>
                         Austragen
@@ -122,6 +129,7 @@ if(!empty($_GET['err'])){
     
     <div class="container theme-showcase" role="main">
         <h1>Pakete bearbeiten</h1><br>
+        <!-- Formular, um ein Paket zu bearbeiten, enthält aktuelle Daten des Pakets -->
         <form class="form center-block col-md-8" action="processing/pakete_bearbeitung.php?id=<?php echo $id; ?>" method="post">
             <fieldset disabled>
             <div class="form-group">
@@ -133,6 +141,7 @@ if(!empty($_GET['err'])){
                 <label for="ort" class="control-label">Ort des Pakets</label>
                 <input name="ort" type="text" value="<?php echo $ort; ?>" class="form-control
                                                                     <?php
+                                                                                 //Falls vorige Angabe eine Fehlermeldung verursacht hat
                                                                     if($err=='ort'){
                                                                         echo " bg-danger";
                                                                     }

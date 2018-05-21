@@ -1,4 +1,8 @@
 <?php
+//Prüfungen:
+//Ist der Nutzer angemeldet?
+//Ist der Nutzer ein Schüler?
+//Ist der Schüler vom Postdienst?
     session_start();
     include 'dbh.php';
 
@@ -97,7 +101,9 @@ if(!empty($_GET['src'])){
     </nav>
     
     <div class="container theme-showcase" role="main">
-        <?php if($src == 'del'){
+        <?php 
+        //Hinweise & Meldungen
+        if($src == 'del'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Paket wurde erfolgreich gelöscht.</div>";
         } else if($src == 'paket'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Paketort wurde erfolgreich geändert.</div>";
@@ -106,6 +112,7 @@ if(!empty($_GET['src'])){
         <h1>Pakete bearbeiten</h1><br>
         <?php
         
+        //Alle aktuellen Pakete mit Link zum Bearbeiten
          $sql = "SELECT id, ort, zeitpunkt, schueler_uid FROM paket WHERE aktuell=1 ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
         
@@ -117,6 +124,7 @@ if(!empty($_GET['src'])){
             $zeitpunkt = $date -> format('d.m.Y');
              $uid = $row['schueler_uid'];
              
+             //ein Panel für jedes aktuelle Paket
              echo "<div class='panel panel-info'>
              <div class='panel-heading'>
     <h3 class='panel-title'>Paket für $uid<span aria-hidden='true'><a href='pakete_bearbeitung.php?id=$id' class='close'><span class='glyphicon glyphicon-pencil'></span></a></span></h3>

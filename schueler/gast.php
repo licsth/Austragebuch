@@ -25,13 +25,15 @@
                 <div class="col-lg-4 col-md-6 col-sm-8 center-block">
                     <h2>Gast anmelden</h2>
                     <?php
+                    //eventuelle Fehlermeldung
                         if($err == 'empty'){
                             echo "<div class='alert alert-danger' role='alert'>Bitte gültige Werte eingeben.</div>";
                         }
                     ?>
+                    <!-- Formular, um Gäste anzumelden -->
                     <form method="post" action="processing/gastp.php">
                         <input type="text" class="form-control" placeholder="Zeitraum" name="wann">
-                        <input type='datetime' class="form-control" placeholder="Name des Gastes" name="name"><br>
+                        <input type='text' class="form-control" placeholder="Name des Gastes" name="name"><br>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>
                     </form>
                 </div>

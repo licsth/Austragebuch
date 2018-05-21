@@ -3,22 +3,25 @@ include 'dbh.php';
 if(empty($_GET['id'])){
         echo "err: empty";
 } else{
+    //Test: ist die Telegram-ID einem Schüler zugeordnet?
     $id = $_GET['id'];
     $sql = "SELECT * FROM schueler WHERE telegram_id='$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     if(!$row){
         echo "Anscheinend ist dein Telegram-Account nicht im Austragebuch registriert.\n"
-                		. "Um den Austragebuch-Bot nutzen zu können, navigiere im digitalen Austragebuch zu dem Menüpunkt [dein Nutzername]>Telegram und gib dort folgende Nummer ein: \n<b>$id</b>";
+                		. "Um den Austragebuch-Bot nutzen zu können, navigiere im digitalen Austragebuch oben rechts zu dem Menüpunkt [dein Nutzername]>Telegram und gib dort folgende Nummer ein: \n<b>$id</b>";
         return;
     }
     $uid = $row['uid'];
     
+    //Anzahl der Pakete auswählen
     $sql = "SELECT COUNT(*) FROM paket WHERE schueler_uid='$uid' AND aktuell=1";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $anzahl = $row['COUNT(*)'];
     
+    //Anzahl der Pakete zurückgeben
     if($anzahl != 1) echo "Du hast $anzahl neue Pakete!";
     else echo "Du hast ein neues Paket!";
     
@@ -27,6 +30,7 @@ if(empty($_GET['id'])){
     $result = mysqli_query($conn, $sql);
 
      while($row = mysqli_fetch_assoc($result)){
+         //Nachricht für jedes Paket ergänzen
         $ort = $row['ort'];
         $id = $row['id'];
         $zeitpunkt = $row['zeitpunkt'];

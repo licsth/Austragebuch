@@ -9,9 +9,11 @@
         $schueler_uid = str_replace("%20", " ", $schueler_uid);
         $ort = $_GET['ort'];
         
+        //Test: wurde eine gültige uid angegeben?
         $sql = "SELECT * FROM schueler WHERE uid ='$schueler_uid'";
         $result = mysqli_query($conn, $sql);
         if(!$row = mysqli_fetch_assoc($result)){
+            //Test: wurde eine gültige Kombination Vorname-Nachname angegeben?
             $names = preg_split("/[\s,]+/", $schueler_uid);
 
             $first = $names[0];
@@ -26,6 +28,7 @@
             }
         }        
         
+        //Neues Paket eintragen
         $uid = $row['uid'];
         $sql = "INSERT INTO paket(schueler_uid, ort) VALUES ('$uid', '$ort')";
         $result = mysqli_query($conn, $sql);

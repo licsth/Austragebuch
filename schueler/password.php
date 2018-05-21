@@ -1,6 +1,7 @@
 <?php
+//Tests: ist der Nutzer angemeldet? Ist der Nutzer ein Schüler?
 session_start();
-if(!isset($_SESSION['uid'])){
+if(!isset($_SESSION['uid']) || $_SESSION['role'] != "schueler"){
     header("Location: index.php");
 }
 include 'dbh.php';
@@ -31,16 +32,19 @@ if(!empty($_GET['err'])){
                 <h2>Passwort ändern</h2>
                 <p>
                     <?php
+                    //Info zum aktuellen Account
                     echo "Du bist eingeloggt als $first $last ($uid)."
                     ?>
                 </p>
                 <?php
+                        //Fehlermeldungen
                     if($err == 'pwd'){
                         echo "<div class='alert alert-danger' role='alert'>Das eingegebene Passwort ist inkorrekt.</div>";
                     } else if($err == 'new'){
                         echo "<div class='alert alert-danger' role='alert'>Bitte gib einen gültigen Wert für das neue Passwort ein.</div>";
                     }
                 ?>
+                <!-- Formular zum Ändern eines Passworts -->
                 <form method="post" action="processing/pwd.php">
                     <input type="password" class="form-control" placeholder="Altes Passwort" name="old">
                     <input type="password" class="form-control" placeholder="Neues Passwort" name="new"><br>

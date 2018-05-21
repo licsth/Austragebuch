@@ -1,5 +1,5 @@
 <?php
-
+//Verbindung  zur Datenbank
 $conn = mysqli_connect("localhost", "root", "", "Austragebuch");
 
 if(!$conn){

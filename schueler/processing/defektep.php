@@ -3,6 +3,9 @@
 
 include 'dbh.php';
 
+if(!isset($_SESSION['uid']) || $_SESSION['role'] != "schueler")
+
+//Test: sind alle nötigen Informationen gegeben?
 if(empty($_POST['mangel']) && empty($_POST['ort'])){
     header("Location: ../defekte.php?err=mo");
 } else if(empty($_POST['mangel'])){
@@ -12,6 +15,7 @@ else if(empty($_POST['ort'])){
     header("Location: ../defekte.php?err=ort");
 } else{
 
+    //Informationen über den Schüler gewinnen
     $first = $_SESSION['first'];
     $last = $_SESSION['last'];
     $wg = $_SESSION['wg'];
@@ -23,11 +27,12 @@ else if(empty($_POST['ort'])){
     $sozpaed = $row['sozpaed'];
     $mentor = $row['mentor'];
     
-$mangel = $_POST['mangel'];
-$ort = $_POST['ort'];
-$bemerkung = $_POST['bemerkung'];
+    $mangel = $_POST['mangel'];
+    $ort = $_POST['ort'];
+    $bemerkung = $_POST['bemerkung'];
     
-    $empfaenger = "linda.thelen@arcor.de";
+    //E-Mail verfassen
+    $empfaenger = "...";
     $betreff = "Mängel und Defekte";
     $from = "From: Austragebuch Service <austragebuch@hansenberg.info>\n";
     $from .= "Reply-To: austragebuch@hansenberg.info\n";
@@ -44,7 +49,8 @@ $bemerkung = $_POST['bemerkung'];
     if($bemerkung){
         $text .= "Bemerkung: $bemerkung";
     }
-    //echo $text;
+    
+    //Mail versenden
     $mail = mail($empfaenger, $betreff, $text, $from);
     if($mail){
         header("Location: ../schueler.php?src=defekt");

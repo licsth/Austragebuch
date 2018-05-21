@@ -1,6 +1,7 @@
 <?php
     session_start();
 include 'dbh.php';
+//Zugriffsberechtigungen
 if(!isset($_SESSION['uid'])){
     header("Location: index.php");
 }
@@ -72,12 +73,14 @@ $uid = $_SESSION['uid'];
     <div class="container theme-showcase" role="main">
         <br>
         <?php
+        //Hinweise und Meldungen
         if($src == 'pwd'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Passwort wurde erfolgreich geändert.</div>";
         } else if($src == 'index'){
             echo "<div class='alert alert-info alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Bitte denke daran, dein Passwort zu ändern, um die Sicherheit deines Accounts zu gewähren.</div>";
         }
         ?>
+        <!-- Begrüßung -->
         <div class="jumbotron">
             <h1><?php
                 echo "Hallo, $first.";
