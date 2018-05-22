@@ -2,7 +2,7 @@
 //Ist der Schüler angemeldet? Wurde eine ID angegeben?
 session_start();
 include 'dbh.php';
-if(!isset($_SESSION['uid']) || $_SESSION]['role'] != "schueler"){
+if(!isset($_SESSION['uid']) || $_SESSION['role'] != "schueler"){
     header("Location: ../index.php");
 }
 if(empty($_GET['id'])){

@@ -63,7 +63,7 @@ $uid = $_SESSION['uid'];
                 
                 ?>
                 </a></li>
-              <li><a href="register.php">Schüler registrieren</a></li>
+              <li><a href="register.php">Nutzer registrieren</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
