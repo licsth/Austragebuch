@@ -20,8 +20,8 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 public class Bot extends TelegramLongPollingBot {
 	
 	//Autentifizierung für Telegram
-	private static String BOT_TOKEN = "Bitch you thought";
-	private static String BOT_USERNAME = "get your own";
+	private static String BOT_TOKEN = "513440770:AAEZGEhXjoSmct12GXOZ5ijhuXiSueeV6rI";
+	private static String BOT_USERNAME = "austragebuchbot";
 	
 	//HashMaps zum Zuordnen von Daten zu ChatIDs
 	//Prozesse (z.B. Nachfragen beim austragen)

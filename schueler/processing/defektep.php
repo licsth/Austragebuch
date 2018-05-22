@@ -3,7 +3,9 @@
 
 include 'dbh.php';
 
-if(!isset($_SESSION['uid']) || $_SESSION['role'] != "schueler")
+if(!isset($_SESSION['uid']) || $_SESSION['role'] != "schueler"){
+    header('Location: logout.php');
+}
 
 //Test: sind alle nötigen Informationen gegeben?
 if(empty($_POST['mangel']) && empty($_POST['ort'])){
