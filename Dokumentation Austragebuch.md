@@ -8,9 +8,9 @@ Zusätzlich zu dem Webservice sind die Funktionen zum Austragebuch und Post- di
 
 ### Table of contents
 
-1. [Die Idee](#Die Idee)
+1. [Die Idee](#"die idee")
 
-2. [Umsetzung](#Umsetzung)
+2. [Umsetzung](#umsetzung)
 
 
 
