@@ -8,7 +8,7 @@ Zusätzlich zu dem Webservice sind die Funktionen zum Austragebuch und Post- di
 
 ### Table of contents
 
-1. [Die Idee](#"die idee")
+1. [Die Idee](#die-idee)
 
 2. [Umsetzung](#umsetzung)
 
@@ -29,8 +29,8 @@ Die nächste Idee resultierte aus der leichten Ineffizienz, die die momentane R
 Zu Beginn mussten wir eine Struktur für die Datenbank festlegen, welche den Ansprüchen an die Funktionalitäten genügt. Angefangen hat die Umsetzung mit drei Entitäten:
 
 ```sql
-Schueler(Name, Vorname, uid, passwort, wg),
-Sozpaed(Name, Vorname, uid, passwort),
+Schueler(uid, name, vorname, passwort, wg),
+Sozpaed(uid, name, vorname, passwort),
 Eintrag(id, zeit, wohin, zurueck, absprache, ↑schueler_uid)
 ```
 
@@ -49,7 +49,7 @@ Grundsätzlich lässt sich sagen, dass wir auf allen Seiten - mit Ausnahme der A
 Als nächstes haben wir Besuchsankündigungen digitalisiert. Für diesen Prozess mussten wir eine weitere Entität hinzufügen:
 
 ```
-Gast(id, Name, Zeitraum, bestätigt, antrag, aktuell, ↑schueler_uid)
+Gast(id, name, zeitraum, bestaetigt, antrag, aktuell, ↑schueler_uid)
 ```
 
 Ein Schüler meldet unter einem neuen Menüpunkt („Gast anmelden“) einen Gast an, indem er ein Formular ausfüllt, in welchem der Name des Besuchers und der Zeitraum des Besuches angegeben werden müssen. In der Variable „antrag“ wird die Zeit der Stellung in Form eines DateTime Objektes gespeichert, damit Missverständnisse durch Formulierungen wie „Morgen 12-14“ als Zeitangabe vermieden werden können. Nach Abschicken des Formulars wird man auf die Startseite umgelenkt, wo ein Banner auftaucht, der die erfolgreiche Abschickung der Besuchsankündigung bestätigt. Zudem taucht ein zweites Banner auf, der einen informiert, dass der Besuch noch nicht von einem Sozialpädagogen bestätigt wurde.
