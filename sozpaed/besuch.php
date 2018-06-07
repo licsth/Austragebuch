@@ -47,6 +47,7 @@ $uid = $_SESSION['uid'];
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
+                <li><a href="schueler_passwort.php">Schülerpasswort</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -55,7 +56,7 @@ $uid = $_SESSION['uid'];
         </div>
       </div>
     </nav>
-    
+
     <!-- Main -->
     <div class="container theme-showcase" role="main">
         <?php
@@ -73,10 +74,10 @@ $uid = $_SESSION['uid'];
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
                 echo $row['COUNT(name)'];
-                
+
                 ?>)</h1>
 </div>
-    
+
         <br>
         <?php
         // Auswahl aller unbestätigten Besuche
@@ -98,7 +99,7 @@ $uid = $_SESSION['uid'];
 
             $first = $row2['first'];
             $last = $row2['last'];
-            
+
             // Für jeden Besuch ein Panel mit Name des Gastes, des Schülers, Zeitraum und Zeitpunkt des Antrags
             echo "<div class='panel panel-default'>
             <div class='panel-heading'>
@@ -107,13 +108,13 @@ $uid = $_SESSION['uid'];
           <br><strong>Eingereicht:</strong> $antrag<br><br><a href='processing/besuchp.php?id=$id' class='btn btn-default'>Bestätigen</a>
           </div>
         </div>
-        
+
         ";
-            
-            
+
+
         }
         ?>
-            
+
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
