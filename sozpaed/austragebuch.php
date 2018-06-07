@@ -50,9 +50,9 @@ $uid = $_SESSION['uid'];
           <ul class="nav navbar-nav">
             <li><a href="sozpaed.php">Start <span class="sr-only">(aktuell)</span></a></li>
             <li class="active"><a href="#">Austragebuch</a></li>
-            <li><a href="besuch.php">Besuchsankündigungen 
+            <li><a href="besuch.php">Besuchsankündigungen
                 <?php
-                
+
                 $sql = "SELECT COUNT(name) FROM gast WHERE bestaetigt=0";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
@@ -60,7 +60,7 @@ $uid = $_SESSION['uid'];
                 if($count > 0){
                     echo "<span class='badge'>$count</span>";
                 }
-                
+
                 ?>
                 </a></li>
               <li><a href="register.php">Nutzer registrieren</a></li>
@@ -70,6 +70,7 @@ $uid = $_SESSION['uid'];
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
+                <li><a href="schueler_passwort.php">Schülerpasswort</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -81,7 +82,7 @@ $uid = $_SESSION['uid'];
     <div class="container theme-showcase" role="main">
         <div class="page-header">
             <h1>Austragebuch<small>
-            
+
 
                 <?php
                 //Informationen zur aktuellen Anzeige
@@ -102,7 +103,7 @@ $uid = $_SESSION['uid'];
                }
                ?>
                          > Nur nicht zurückgetragene</span></div>
-            
+
             <?php
             if($show == 'all'){
                 //Anzahl der letzten Tage, sofern alle Einträge angezeigt werden
@@ -142,20 +143,20 @@ $uid = $_SESSION['uid'];
                 while($row = mysqli_fetch_assoc($result)){
                     $id = $row['id'];
                     $uid = $row['uid'];
-                    
+
                     $sql2 = "SELECT * FROM schueler WHERE uid='$uid'";
                     $result2 = mysqli_query($conn, $sql2);
                     $row2 = mysqli_fetch_assoc($result2);
-                    
+
                     $first = $row2['first'];
                     $last = $row2['last'];
                     $wg = $row2['wg'];
-                    
+
                     $away = $row['away'];
                     $date = DateTime::createFromFormat('Y-m-d H:i:s', $away);
                     $en = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
                     $deshort = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
-                    
+
                     //Formatierung des Datums
                     //Nur Uhrzeit für heutige Einträge
                     if($date->format('d.m.Y') == date('d.m.Y')){
@@ -171,7 +172,7 @@ $uid = $_SESSION['uid'];
                         $away = $date->format('D, d.m.Y, H:i') . " Uhr";
                         $away = str_replace($en, $deshort, $away);
                     }
-                    
+
                     $back = $row['back'];
                     $date = DateTime::createFromFormat('Y-m-d H:i:s', $back);
                     //Formatierung des Datums
@@ -189,7 +190,7 @@ $uid = $_SESSION['uid'];
                         $back = $date->format('D, d.m.Y, H:i') . " Uhr";
                         $back = str_replace($en, $deshort, $back);
                     }
-                    
+
                     $absprache = $row['absprache'];
                     $wohin = $row['wohin'];
                     $isback = $row['isback'];

@@ -6,7 +6,7 @@ if(!isset($_SESSION['uid']) || $_SESSION['role'] != "sozpaed"){
 }
 include 'dbh.php';
 $uid = $_SESSION['uid'];
-                
+
 $first = $_SESSION['first'];
 $last = $_SESSION['last'];
 
@@ -23,11 +23,11 @@ if(!empty($_GET['err'])){
     <title>Passwort ändern</title>
 </head>
 <body role="document" class="form">
-    
+
     <div class="container theme-showcase" role="main">
         <br>
         <div class="row">
-            <a href="schueler.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
+            <a href="sozpaed.php"><span class="glyphicon glyphicon-home" style="font-size: 2em;" aria-hidden="true"></span></a>
             <div class="col-lg-4 col-md-6 col-sm-8 center-block">
                 <h2>Passwort ändern</h2>
                 <p>

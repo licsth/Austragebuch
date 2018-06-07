@@ -7,7 +7,6 @@ if(!isset($_SESSION['uid']) || $_SESSION['role'] != "sozpaed"){
 
 include 'dbh.php';
 $uid = $_SESSION['uid'];
-$role = $_SESSION['role'];
 
 $pwd = $_SESSION['pwd'];
 //Stimmt das alte Passwort?
@@ -24,7 +23,7 @@ if(password_verify($_POST['old'], $pwd)){
     } else{
         header("Location: ../password.php?err=new");
     }
-} 
+}
 //Ansonsten: ist das alte Passwort noch provisorisches Passwort?
 //TODO
 else if($_POST['old'] == $pwd && $pwd == $uid){
