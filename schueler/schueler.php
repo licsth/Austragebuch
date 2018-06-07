@@ -67,30 +67,30 @@
                 <li><a href="post_bearbeitung.php">Pakete bearbeiten</a></li>
               </ul>
             </li>';
-                          
+
                   }
                   ?>
-              
+
               <li><a href="pakete.php">Pakete<?php
-                
+
                 $sql = "SELECT COUNT(*) FROM paket WHERE aktuell=1 AND schueler_uid='$uid'";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
                 $count = $row['COUNT(*)'];
                 if($count > 0){
                     echo " <span class='badge'>$count</span>";
-                    
+
                 }
-                
+
                 ?></a></li>
           </ul>
-            
+
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
-                <li><a href="telegram.php">Telegram</a></li>  
+                <li><a href="telegram.php">Telegram</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -99,7 +99,7 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    
+
     <div class="container theme-showcase" role="main">
         <br>
         <?php
@@ -118,9 +118,7 @@
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Es ist ein Fehler aufgetreten, Defekt konnte nicht gemeldet werden.</div>";
         } else if($src == 'telegram'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Deine Telegram-ID wurde erfolgreich gespeichert.</div>";
-        } else if($src == 'index'){
-            echo "<div class='alert alert-info alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Bitte denke daran, dein Passwort zu ändern, um die Sicherheit deines Accounts zu gewähren.</div>";
-        }
+        } 
         ?>
         <!-- Jumbotron auf Begrüßungsseite -->
         <div class="jumbotron">
@@ -129,7 +127,7 @@
 	           ?>
             </h1>
             <p>
-                Willkommen im digitalen Austragebuch. 
+                Willkommen im digitalen Austragebuch.
                 <?php
                 if($ausgetragen){
                     echo "Du bist zurzeit ausgetragen.";
@@ -140,20 +138,20 @@
             </p>
         </div>
         <?php
-        
+
         //Hinweise auf unbestätigte Besuchsankündigungen
         $sql = "SELECT name, zeitraum FROM gast WHERE schueler_uid='$uid' AND bestaetigt=0";
         $result = mysqli_query($conn, $sql);
-        
+
         while($row = mysqli_fetch_assoc($result)){
             $name = $row['name'];
             $zeitraum = $row['zeitraum'];
             echo "<div class='alert alert-warning alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button><strong>Hinweis!</strong> Dein Besuch von $name im Zeitraum $zeitraum wurde noch nicht bestätigt.</div>";
         }
-        
+
         ?>
         <div class="row">
-            
+
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

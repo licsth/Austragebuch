@@ -65,7 +65,7 @@
             </li>';}
                   ?>
               <li><a href="pakete.php">Pakete<?php
-                
+
                 $sql = "SELECT COUNT(*) FROM paket WHERE aktuell=1 AND schueler_uid='$uid'";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
@@ -73,7 +73,7 @@
                 if($count > 0){
                     echo " <span class='badge'>$count</span>";
                 }
-                
+
                 ?></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -81,7 +81,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
-                <li><a href="telegram.php">Telegram</a></li>  
+                <li><a href="telegram.php">Telegram</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -90,16 +90,16 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    
+
     <div class="container theme-showcase" role="main">
-        
+
         <h1>Deine Besuchsankündigungen</h1><br>
         <?php
-        
+
         //SQL-Befehl: wähle die Daten aller Gäste, die vom aktuelle angemeldeten Schüler angemeldet wurden und die aktuell sind (1 bedeutet als boolean true), ordne diese nach abfallender ID
-        $sql = "SELECT name, zeitraum, bestaetigt, id FROM gast WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
+        $sql = "SELECT name, zeitraum, bestaetigt, id, antrag FROM gast WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
-        
+
         //Solange es ein weiteres Ergebnis (row) gibt, wähle dieses aus und...
         while($row = mysqli_fetch_assoc($result)){
             //...speichere Namen, Zeitraum, und ob er bestätigt ist
@@ -107,22 +107,24 @@
             $zeitraum = $row['zeitraum'];
             $bestaetigt = $row['bestaetigt'];
             $id = $row['id'];
-            
+            $antrag = $row['antrag'];
+            $datum = DateTime::createFromFormat('Y-m-d H:i:s', $antrag) -> format('d.m.Y');
+
             //gib ein Panel mit den Informationen aus
             echo "<div class='panel panel-info'><div class='panel-heading'>
     <h3 class='panel-title'>$zeitraum <span aria-hidden='true'><a href='processing/aktuell.php?id=$id' class='close'>&times;</a></span></h3>
   </div><div class='panel-body'>";
-            
+
             if($bestaetigt) echo "<strong>Bestätigter</strong> ";
             else echo "<strong>Unbestätigter</strong> ";
-                    
-            echo "Besuch von <strong>$name</strong>.
+
+            echo "Besuch von <strong>$name</strong><br />Beantragt am $datum.
                 </div></div>";
         }
-        
+
         ?>
         <div class="row">
-            
+
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

@@ -12,7 +12,7 @@ if(!$uid || !$pwd){
     //Falls nicht alle Daten angegeben wurden
     header("Location: ../index.php?err=login");
 } else{
-    
+
     //Apostrophe escapen, um SQL-Injection zu vermeiden
 $uid = str_replace("'", "\'", $uid);
 $pwd = str_replace("'", "\'", $pwd);
@@ -37,16 +37,6 @@ if(!$row = mysqli_fetch_assoc($result)){
             $_SESSION['first'] = $row['first'];
             $_SESSION['last'] = $row['last'];
             header("Location: ../sozpaed/sozpaed.php");
-        } 
-        //Ansonsten: stimmt das Passwort ungehasht mit dem Passwort und der uid überein (Standardeinstellung)
-        //TODO
-        else if($row['pwd'] == $pwd && $pwd == $uid){
-            $_SESSION['uid'] = $row['uid'];
-            $_SESSION['pwd'] = $row['pwd'];
-            $_SESSION['role'] = 'sozpaed';
-            $_SESSION['first'] = $row['first'];
-            $_SESSION['last'] = $row['last'];
-            header("Location: ../sozpaed/sozpaed.php?src=index");
         }
         else{
             //Ansonsten: Anmeldedaten sind nicht korrekt
@@ -66,19 +56,6 @@ else{
         $_SESSION['postdienst'] = $row['postdienst'];
         $_SESSION['ausgetragen'] = $row['ausgetragen'];
         header("Location: ../schueler/schueler.php");
-    } 
-    //Ansonsten: stimmt das Passwort ungehasht mit dem Passwort und der uid überein (Standardeinstellung)
-        //TODO
-    else if($row['pwd'] == $pwd && $pwd == $uid){
-        $_SESSION['uid'] = $row['uid'];
-        $_SESSION['pwd'] = $row['pwd'];
-        $_SESSION['role'] = 'schueler';
-        $_SESSION['first'] = $row['first'];
-        $_SESSION['last'] = $row['last'];
-        $_SESSION['wg'] = $row['wg'];
-        $_SESSION['postdienst'] = $row['postdienst'];
-        $_SESSION['ausgetragen'] = $row['ausgetragen'];
-        header("Location: ../schueler/schueler.php?src=index");
     }
     else{
         //Ansonsten: Anmeldedaten sind nicht korrekt
