@@ -12,6 +12,10 @@ $src = '';
 if(!empty($_GET['src'])){
     $src = $_GET['src'];
 }
+$name = '';
+if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+}
 $first = $_SESSION['first'];
 $uid = $_SESSION['uid'];
 ?>
@@ -41,9 +45,9 @@ $uid = $_SESSION['uid'];
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Start <span class="sr-only">(aktuell)</span></a></li>
             <li><a href="austragebuch.php?show=all">Austragebuch</a></li>
-            <li><a href="besuch.php">Besuchsankündigungen 
+            <li><a href="besuch.php">Besuchsankündigungen
                 <?php
-                
+
                 $sql = "SELECT COUNT(name) FROM gast WHERE bestaetigt=0";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
@@ -51,7 +55,7 @@ $uid = $_SESSION['uid'];
                 if($count > 0){
                     echo "<span class='badge'>$count</span>";
                 }
-                
+
                 ?>
                 </a></li>
               <li><a href="register.php">Nutzer registrieren</a></li>
@@ -61,6 +65,7 @@ $uid = $_SESSION['uid'];
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
+                <li><a href="schueler_passwort.php">Schülerpasswort</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -69,7 +74,7 @@ $uid = $_SESSION['uid'];
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    
+
     <div class="container theme-showcase" role="main">
         <br>
         <?php
@@ -78,6 +83,8 @@ $uid = $_SESSION['uid'];
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Passwort wurde erfolgreich geändert.</div>";
         } else if($src == 'index'){
             echo "<div class='alert alert-info alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Bitte denke daran, dein Passwort zu ändern, um die Sicherheit deines Accounts zu gewähren.</div>";
+        } else if($src == 'name'){
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Das Passwort für $name wurde erfolgreich zurückgesetzt</div>";
         }
         ?>
         <!-- Begrüßung -->
@@ -91,7 +98,7 @@ $uid = $_SESSION['uid'];
             </p>
         </div>
         <div class="row">
-            
+
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
