@@ -64,6 +64,7 @@ $uid = $_SESSION['uid'];
                 ?>
                 </a></li>
               <li><a href="register.php">Nutzer registrieren</a></li>
+              <li><a href="postdienst.php">Postdienst hinzufügen</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -206,7 +207,16 @@ $uid = $_SESSION['uid'];
             </tbody>
         </table>
     </div>
-    <script src="main.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    function change(){
+        //Checkbox im Austragebuch verarbeiten
+        if(!document.getElementById('alleweg').classList.contains('checked')){
+            window.location = 'austragebuch.php?show=away';
+        } else{
+            window.location = 'austragebuch.php?show=all';
+        }
+    }
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>

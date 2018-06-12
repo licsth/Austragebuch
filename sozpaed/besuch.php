@@ -40,6 +40,7 @@ $uid = $_SESSION['uid'];
             <li><a href="austragebuch.php?show=all">Austragebuch</a></li>
             <li class="active"><a href="#">Besuchsankündigungen</a></li>
               <li><a href="register.php">Nutzer registrieren</a></li>
+              <li><a href="postdienst.php">Postdienst hinzufügen</a></li>
           </ul>
             <!-- rechtes Menü (persönliche Einstellungen) -->
           <ul class="nav navbar-nav navbar-right">

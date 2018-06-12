@@ -59,6 +59,7 @@ $uid = $_SESSION['uid'];
                 ?>
                 </a></li>
               <li><a href="register.php">Nutzer registrieren</a></li>
+              <li><a href="postdienst.php">Postdienst hinzufügen</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -82,7 +83,9 @@ $uid = $_SESSION['uid'];
         if($src == 'pwd'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Passwort wurde erfolgreich geändert.</div>";
         } else if($src == 'name'){
-            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Das Passwort für $name wurde erfolgreich zurückgesetzt</div>";
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Das Passwort für $name wurde erfolgreich zurückgesetzt.</div>";
+        } else if($src == 'postdienst'){
+            echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>$name hat nun Postdienstrechte.</div>";
         }
         ?>
         <!-- Begrüßung -->
