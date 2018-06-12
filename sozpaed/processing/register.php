@@ -21,14 +21,11 @@ foreach($file as $entry){
     if($role == "schueler"){
         $wg = $data[2];
         $wg = str_replace("'", "\'", $wg);
-        $wg = str_replace("diesisteinleerzeichen", " ", $wg);
     }
     $first = $data[0];
     $first = str_replace("'", "\'", $first);
-    $first = str_replace("diesisteinleerzeichen", " ", $first);
     $last = $data[1];
     $last = str_replace("'", "\'", $last);
-    $last = str_replace("diesisteinleerzeichen", " ", $last);
 
     //uid nach dem Schema vorname.nachname erstellen
     if($role == "schueler"){
