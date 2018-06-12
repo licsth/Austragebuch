@@ -1,5 +1,6 @@
 <?php
 session_start();
+//Überprüfen der Zugriffsrechte
 if(!isset($_SESSION['uid']) || $_SESSION['role'] != "sozpaed"){
     header("Location: ../index.php");
     return;
@@ -20,12 +21,15 @@ $names = preg_split("/[\s,]+/", $name);
 $first = $names[0];
 $last = $names[1];
 
+//Schüler in der Datenbank suchen
 $sql = "SELECT uid FROM schueler WHERE first='$first' AND last='$last' OR uid='$name' ";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 if(!$row){
+  //Falls kein Schüler gefunden wurde
   header("Location: ../schueler_passwort.php?src=name&name=$name");
 } else{
+  //Schülerdaten verändern: neues Passwort festsetzen
   $uid = $row['uid'];
   $pwd = password_hash($uid, PASSWORD_BCRYPT);
   $sql = "UPDATE schueler SET pwd='$pwd' WHERE uid='$uid'";

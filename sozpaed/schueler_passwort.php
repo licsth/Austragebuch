@@ -51,7 +51,7 @@ $name = $_GET['name'];
                         echo "<div class='alert alert-danger' role='alert'>Der angegebene Schüler wurde nicht gefunden.</div>";
                     }
                 ?>
-                <!-- Formular, um Pakete hinzuzufügen -->
+                <!-- Formular, um Schülernamen einzugeben -->
                 <form class="form" action="processing/schueler_passwort.php" method="post">
                     <div class="form-group">
                         <input name="schueler" type="text" id="tags" class="form-control

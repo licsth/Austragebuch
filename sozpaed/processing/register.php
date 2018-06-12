@@ -1,5 +1,5 @@
 <html><?php
-    
+
     //CSV-Import von Schülern
     include 'dbh.php';
     //.csv-Datei prüfen
@@ -8,20 +8,15 @@ if($type != "text/csv"){
     header("Location: ../register.php?src=type");
     return;
 }
-    
+
     $role = $_POST['role'];
 
     //Datei speichern
 $name = $_FILES['file']['tmp_name'];
-$file = file($name)[0];
-    //Leerzeichen rückersetzen
-$file = str_replace(" ", "diesisteinleerzeichen", $file);
-$entries = preg_split("/[\s,]+/", $file);
-
-foreach($entries as $entry){
+$file = file($name);
+foreach($file as $entry){
     //Für jeden Schüler in der Datei:
-    $data = preg_split("/[\s;]+/", $entry);
-    
+    $data = preg_split("/[;]+/", $entry);
     //Leerzeichen rückersetzen, Apostrophe escapen
     if($role == "schueler"){
         $wg = $data[2];
@@ -58,9 +53,9 @@ foreach($entries as $entry){
             $sql = "INSERT INTO sozpaed(uid, pwd, first, last) VALUES ('$uid', '$pwd', '$first', '$last');";
             $result = mysqli_query($conn, $sql);
         }
-        
+
     }
-    
+
 }
     header('Location: ../register.php');
     ?></html>
