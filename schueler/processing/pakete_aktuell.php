@@ -10,11 +10,15 @@ if(empty($_GET['id'])){
 }
 else{
     //Paket als nicht aktuell markieren
-    $id = $_GET['id'];
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
+    if (!is_numeric($id)) {
+     	header('Location: logout.php');
+      return;
+     }
     $sql = "UPDATE paket SET aktuell=0 WHERE id=$id";
     $result = mysqli_query($conn, $sql);
     header("Location: ../pakete.php");
-    
+
 }
 
 ?>

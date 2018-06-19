@@ -10,11 +10,11 @@ if(empty($_GET['id'])){
 }
 else{
     //SQL-Anweisungen
-    $id = $_GET['id'];
+    $id = mysqli_real_escape_string($conn, $_GET['id']);
     $sql = "UPDATE gast SET aktuell=0 WHERE id=$id";
     $result = mysqli_query($conn, $sql);
     header("Location: ../gaeste.php");
-    
+
 }
 
 ?>

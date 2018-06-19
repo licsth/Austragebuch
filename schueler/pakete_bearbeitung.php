@@ -20,10 +20,11 @@
         return;
     }
     $id = $_GET['id'];
-    
+    $uid = $_SESSION['uid'];
     //Erneuerung von Daten, die extern geändert werden könnten
     $sql = "SELECT * FROM schueler WHERE uid='$uid'";
     $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
     $_SESSION['postdienst'] = $row['postdienst'];
     $_SESSION['ausgetragen'] = $row['ausgetragen'];
 

@@ -4,18 +4,14 @@ session_start();
 include 'dbh.php';
 
 //Angegebene Nutzerdaten auslesen
-$uid = $_POST["uid"];
-$pwd = $_POST["pwd"];
+$uid = mysqli_real_escape_string($conn, $_POST["uid"]);
+$pwd = mysqli_real_escape_string($conn, $_POST["pwd"]);
 
 
 if(!$uid || !$pwd){
     //Falls nicht alle Daten angegeben wurden
     header("Location: ../index.php?err=login");
 } else{
-
-    //Apostrophe escapen, um SQL-Injection zu vermeiden
-$uid = str_replace("'", "\'", $uid);
-$pwd = str_replace("'", "\'", $pwd);
 
 //Schülerdaten aus der Datenbank auslesen
 $sql = "SELECT * FROM schueler WHERE uid='$uid'";

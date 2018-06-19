@@ -19,13 +19,10 @@ foreach($file as $entry){
     $data = preg_split("/[;]+/", $entry);
     //Leerzeichen rückersetzen, Apostrophe escapen
     if($role == "schueler"){
-        $wg = $data[2];
-        $wg = str_replace("'", "\'", $wg);
+        $wg = mysqli_real_escape_string($conn, $data[2]);
     }
-    $first = $data[0];
-    $first = str_replace("'", "\'", $first);
-    $last = $data[1];
-    $last = str_replace("'", "\'", $last);
+    $first = mysqli_real_escape_string($conn, $data[0]);
+    $last = mysqli_real_escape_string($conn, $data[1]);
 
     //uid nach dem Schema vorname.nachname erstellen
     if($role == "schueler"){

@@ -14,8 +14,7 @@ if(empty($_POST['schueler'])){
   header("Location: ../schueler_passwort.php?src=name");
   return;
 }
-$name = $_POST['schueler'];
-$name = str_replace("'", "\'", $name);
+$name = mysqli_real_escape_string($conn, $_POST['schueler']);
 $names = preg_split("/[\s,]+/", $name);
 
 $first = $names[0];

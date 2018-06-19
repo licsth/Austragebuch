@@ -21,8 +21,12 @@ if(!$_SESSION['postdienst']){
         header("Location: logout.php");
     return;
     }
-$ort =  $_POST['ort'];
-$id =  $_GET['id'];
+$ort =  mysqli_real_escape_string($conn, $_POST['ort']);
+$id =  mysqli_real_escape_string($conn, $_GET['id']);
+if (!is_numeric($id)) {
+  header('Location: logout.php');
+  return;
+ }
 if($ort == ""){
     header('Location: ../pakete_bearbeitung.php?err=ort');
 }

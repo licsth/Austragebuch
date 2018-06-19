@@ -8,7 +8,7 @@ if(!isset($_SESSION['uid']) || $_SESSION['role'] != "schueler"){
 include 'dbh.php';
 $uid = $_SESSION['uid'];
     if(!empty($_POST['telegramId'])){
-        $id = $_POST['telegramId'];
+        $id = mysqli_real_escape_string($conn, $_POST['telegramId']);
         //Neue Telegram-ID in die Datenbank einfügen
         $sql = "UPDATE schueler SET telegram_id='$id' WHERE uid='$uid'";
         $result = mysqli_query($conn, $sql);
@@ -20,5 +20,5 @@ else{
     $result = mysqli_query($conn, $sql);
     header("Location: ../schueler.php?src=telegram");
 }
-        
+
 ?>

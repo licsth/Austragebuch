@@ -18,7 +18,11 @@ if(!$_SESSION['postdienst']){
         header("Location: logout.php");
     return;
     }
-$id =  $_GET['id'];
+$id =  mysqli_real_escape_string($conn, $_GET['id']);
+if (!is_numeric($id)) {
+  header('Location: logout.php');
+  return;
+ }
 //Paket löschen
 $sql = "DELETE FROM paket WHERE id=$id";
 mysqli_query($conn, $sql);

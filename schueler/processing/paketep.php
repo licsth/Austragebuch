@@ -4,11 +4,11 @@ include 'dbh.php';
 //Ist der Schüler angemeldet?
 if(!isset($_SESSION['uid']) || $_SESSION['role'] != 'schueler'){
     header("Location: logout.php");
-}    
+    return;
+}
 
 //Name auslesen, SQL-Injection vermeiden
-$name = $_POST['schueler'];
-$name = str_replace("'", "\'", $name);
+$name = mysqli_real_escape_string($conn, $_POST['schueler']);
 $names = preg_split("/[\s,]+/", $name);
 
 $first = $names[0];
@@ -17,7 +17,7 @@ $last = $names[1];
 if(empty($_POST['ort'])){
     $ort = $_SESSION['wg'];
 } else{
-    $ort = $_POST['ort'];
+    $ort = mysqli_real_escape_string($conn, $_POST['ort']);
     $ort = str_replace("'", "\'", $ort);
 }
 
@@ -28,6 +28,7 @@ $result = mysqli_query($conn, $sql);
 if(!$row = mysqli_fetch_assoc($result)){
     //Falls kein zugehöriger Schüler gefunden wurde
     header("Location: ../postdienst.php?name=$uid&src=name");
+    return;
 } else{
     $uid = $row['uid'];
     //Paket in die Datenbank einfügen

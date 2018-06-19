@@ -1,13 +1,15 @@
 <?php
     session_start();
+    include 'dbh.php';
 //Prüfung, ob der Nutzer angemeldet und ein Schüler ist
     if(!isset($_SESSION['uid']) || $_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     }
-
+    $uid = $_SESSION['uid'];
     //Erneuerung von Daten, die extern geändert werden könnten
     $sql = "SELECT * FROM schueler WHERE uid='$uid'";
     $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
     $_SESSION['postdienst'] = $row['postdienst'];
     $_SESSION['ausgetragen'] = $row['ausgetragen'];
 

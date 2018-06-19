@@ -3,17 +3,17 @@ session_start();
 //Ist der Nutzer angemeldet und ein Schüler?
 if(!isset($_SESSION['uid']) || $_SESSION['role'] != "schueler"){
     header("Location: logout.php");
-} 
+}
 else {
     include 'dbh.php';
 
     //Daten über den Besuch auslesen
-    $name = $_POST["name"];
+    $name = mysqli_real_escape_string($conn, $_POST["name"]);
     $name = str_replace("ä", "ae", $name);
     $name = str_replace("ö", "oe", $name);
     $name = str_replace("ü", "ue", $name);
 
-    $wann = $_POST["wann"];
+    $wann = mysqli_real_escape_string($conn, $_POST["wann"]);
     $uid = $_SESSION['uid'];
 
     if(!$wann || !$uid){
@@ -25,6 +25,6 @@ else {
     $result = mysqli_query($conn, $sql);
 
     header("Location: ../schueler.php?src=gast");
-    
+
 }
 ?>
