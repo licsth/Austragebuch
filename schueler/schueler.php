@@ -13,6 +13,11 @@
     if(!empty($_GET['src'])){
         $src = $_GET['src'];
     }
+    //Erneuerung von Daten, die extern geändert werden könnten
+    $sql = "SELECT * FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $_SESSION['postdienst'] = $row['postdienst'];
+    $_SESSION['ausgetragen'] = $row['ausgetragen'];
     $first = $_SESSION['first'];
     $uid = $_SESSION['uid'];
 
@@ -118,7 +123,7 @@
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Es ist ein Fehler aufgetreten, Defekt konnte nicht gemeldet werden.</div>";
         } else if($src == 'telegram'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Deine Telegram-ID wurde erfolgreich gespeichert.</div>";
-        } 
+        }
         ?>
         <!-- Jumbotron auf Begrüßungsseite -->
         <div class="jumbotron">

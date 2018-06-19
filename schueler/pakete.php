@@ -12,9 +12,17 @@
     if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     }
+
+    //Erneuerung von Daten, die extern geändert werden könnten
+    $sql = "SELECT * FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $_SESSION['postdienst'] = $row['postdienst'];
+    $_SESSION['ausgetragen'] = $row['ausgetragen'];
+
 //Speichern von Variablen, die später auf der Seite genutzt werden
     $ausgetragen = $_SESSION['ausgetragen'];
     $uid = $_SESSION['uid'];
+
 ?>
 <html>
 <head>
@@ -67,13 +75,13 @@
                   ?>
               <li class="active"><a href="#">Pakete</a></li>
           </ul>
-            
+
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
-                <li><a href="telegram.php">Telegram</a></li>  
+                <li><a href="telegram.php">Telegram</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -82,7 +90,7 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    
+
     <div class="container theme-showcase" role="main">
         <h1>Pakete <?php
             //Anzahl Pakete in Klammern
@@ -93,27 +101,27 @@
             echo "($anzahl)";
             ?></h1><br>
         <?php
-        
+
         //Auswahl aller aktuellen Pakete
          $sql = "SELECT id, ort, zeitpunkt FROM paket WHERE schueler_uid='$uid' AND aktuell=1 ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
-        
+
          while($row = mysqli_fetch_assoc($result)){
             $ort = $row['ort'];
             $id = $row['id'];
             $zeitpunkt = $row['zeitpunkt'];
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $zeitpunkt);
             $zeitpunkt = $date -> format('d.m.Y');
-             
+
              //ein Panel für jedes aktuelle Paket mit Link zum löschen
              echo "<div class='panel panel-info'>
              <div class='panel-heading'>
     <h3 class='panel-title'>Paket vom $zeitpunkt.<span aria-hidden='true'><a href='processing/pakete_aktuell.php?id=$id' class='close'>&times;</a></span></h3>
   </div><div class='panel-body'>";
-             
+
              echo "Du hast ein Paket. <br>Ort: <strong>$ort</strong></div></div>";
          }
-        
+
         ?>
     </div>
     <!-- Skripts: jQuery zum Ansteuern von Elementen auf der Seite und Bootstrap-Skript zum Beispiel für Dropdown-Menüs -->

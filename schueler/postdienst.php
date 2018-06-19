@@ -12,12 +12,17 @@
     if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     }
+    //Erneuerung von Daten, die extern geändert werden könnten
+    $sql = "SELECT * FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $_SESSION['postdienst'] = $row['postdienst'];
+    $_SESSION['ausgetragen'] = $row['ausgetragen'];
     if(!$_SESSION['postdienst']){
         header("Location: logout.php");
     }
     $ausgetragen = $_SESSION['ausgetragen'];
     $uid = $_SESSION['uid'];
-    
+
     $src = '';
 if(!empty($_GET['src'])){
     $src = $_GET['src'];
@@ -46,7 +51,7 @@ if(!empty($_GET['name'])){
   </script>
 </head>
 <body role="document">
-    
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Titel und Schalter werden für eine bessere mobile Ansicht zusammengefasst -->
@@ -87,7 +92,7 @@ if(!empty($_GET['name'])){
               </ul>
             </li>
               <li><a href="pakete.php">Pakete<?php
-                
+
                 $sql = "SELECT COUNT(*) FROM paket WHERE aktuell=1 AND schueler_uid='$uid'";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
@@ -95,16 +100,16 @@ if(!empty($_GET['name'])){
                 if($count > 0){
                     echo " <span class='badge'>$count</span>";
                 }
-                
+
                 ?></a></li>
           </ul>
-            
+
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
-                <li><a href="telegram.php">Telegram</a></li>  
+                <li><a href="telegram.php">Telegram</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -113,7 +118,7 @@ if(!empty($_GET['name'])){
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    
+
     <div class="container theme-showcase" role="main">
         <h1>Postdienst</h1><br>
         <?php
@@ -123,7 +128,7 @@ if(!empty($_GET['name'])){
         } else if($src == 'paketerr'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Paket konnte nicht registriert werden.</div>";
         }
-        
+
         ?>
         <!-- Formular, um Pakete hinzuzufügen -->
         <form class="form center-block col-md-8" action="processing/paketep.php" method="post">
@@ -140,17 +145,17 @@ if(!empty($_GET['name'])){
                                                                         echo "value='$name'";
                                                                     }
                                                                     ?>>
-                
+
             </div>
-        
+
             <div class="form-group">
                 <label for="ort" class="control-label">Paketort (falls nicht in deiner WG)</label>
                 <input name="ort" type="text" class="form-control">
             </div>
-            
+
             <button type="submit" class="btn btn-default">Okay</button>
         </form>
-        
+
     </div>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>

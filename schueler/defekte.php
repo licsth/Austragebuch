@@ -8,6 +8,13 @@
     if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     }
+
+    //Erneuerung von Daten, die extern geändert werden könnten
+    $sql = "SELECT * FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $_SESSION['postdienst'] = $row['postdienst'];
+    $_SESSION['ausgetragen'] = $row['ausgetragen'];
+    
 //Fehlermeldungen
     $err = '';
     if(!empty($_GET['err'])){
@@ -75,16 +82,16 @@
                 if($count > 0){
                     echo " <span class='badge'>$count</span>";
                 }
-                
+
                 ?></a></li>
           </ul>
-            
+
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
-                <li><a href="telegram.php">Telegram</a></li>  
+                <li><a href="telegram.php">Telegram</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -93,7 +100,7 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    
+
     <div class="container theme-showcase" role="main">
         <h1>Mängel und Defekte</h1><br><br>
         <!-- Formular für Mängel und Defekte -->

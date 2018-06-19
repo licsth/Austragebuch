@@ -12,6 +12,13 @@
     if(!empty($_GET['src'])){
         $src = $_GET['src'];
     }
+
+    //Erneuerung von Daten, die extern geändert werden könnten
+    $sql = "SELECT * FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $_SESSION['postdienst'] = $row['postdienst'];
+    $_SESSION['ausgetragen'] = $row['ausgetragen'];
+    
     $first = $_SESSION['first'];
     $uid = $_SESSION['uid'];
     $ausgetragen = $_SESSION['ausgetragen'];

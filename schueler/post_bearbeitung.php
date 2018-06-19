@@ -12,12 +12,17 @@
     if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
     }
+    //Erneuerung von Daten, die extern geändert werden könnten
+    $sql = "SELECT * FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $_SESSION['postdienst'] = $row['postdienst'];
+    $_SESSION['ausgetragen'] = $row['ausgetragen'];
     if(!$_SESSION['postdienst']){
         header("Location: logout.php");
     }
     $ausgetragen = $_SESSION['ausgetragen'];
     $uid = $_SESSION['uid'];
-    
+
     $src = '';
 if(!empty($_GET['src'])){
     $src = $_GET['src'];
@@ -33,7 +38,7 @@ if(!empty($_GET['src'])){
 
 </head>
 <body role="document">
-    
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Titel und Schalter werden für eine bessere mobile Ansicht zusammengefasst -->
@@ -73,7 +78,7 @@ if(!empty($_GET['src'])){
               </ul>
             </li>
               <li><a href="pakete.php">Pakete<?php
-                
+
                 $sql = "SELECT COUNT(*) FROM paket WHERE aktuell=1 AND schueler_uid='$uid'";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
@@ -81,16 +86,16 @@ if(!empty($_GET['src'])){
                 if($count > 0){
                     echo " <span class='badge'>$count</span>";
                 }
-                
+
                 ?></a></li>
           </ul>
-            
+
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
-                <li><a href="telegram.php">Telegram</a></li>  
+                <li><a href="telegram.php">Telegram</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -99,9 +104,9 @@ if(!empty($_GET['src'])){
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    
+
     <div class="container theme-showcase" role="main">
-        <?php 
+        <?php
         //Hinweise & Meldungen
         if($src == 'del'){
             echo "<div class='alert alert-success alert-dismissable' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Schließen'><span aria-hidden='true'>&times;</span></button>Paket wurde erfolgreich gelöscht.</div>";
@@ -111,11 +116,11 @@ if(!empty($_GET['src'])){
         ?>
         <h1>Pakete bearbeiten</h1><br>
         <?php
-        
+
         //Alle aktuellen Pakete mit Link zum Bearbeiten
          $sql = "SELECT id, ort, zeitpunkt, schueler_uid FROM paket WHERE aktuell=1 ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
-        
+
          while($row = mysqli_fetch_assoc($result)){
             $ort = $row['ort'];
             $id = $row['id'];
@@ -123,18 +128,18 @@ if(!empty($_GET['src'])){
             $date = DateTime::createFromFormat('Y-m-d H:i:s', $zeitpunkt);
             $zeitpunkt = $date -> format('d.m.Y');
              $uid = $row['schueler_uid'];
-             
+
              //ein Panel für jedes aktuelle Paket
              echo "<div class='panel panel-info'>
              <div class='panel-heading'>
     <h3 class='panel-title'>Paket für $uid<span aria-hidden='true'><a href='pakete_bearbeitung.php?id=$id' class='close'><span class='glyphicon glyphicon-pencil'></span></a></span></h3>
   </div><div class='panel-body'>";
-             
+
              echo "Datum: <strong>$zeitpunkt</strong> <br>Ort: <strong>$ort</strong></div></div>";
          }
-        
+
         ?>
-        
+
     </div>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>

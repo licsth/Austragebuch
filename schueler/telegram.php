@@ -10,7 +10,11 @@ $uid = $_SESSION['uid'];
  if($_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
  }
-                
+ //Erneuerung von Daten, die extern geändert werden könnten
+ $sql = "SELECT * FROM schueler WHERE uid='$uid'";
+ $result = mysqli_query($conn, $sql);
+ $_SESSION['postdienst'] = $row['postdienst'];
+ $_SESSION['ausgetragen'] = $row['ausgetragen'];        
 $first = $_SESSION['first'];
 $last = $_SESSION['last'];
 
@@ -34,7 +38,7 @@ $id = $row['telegram_id'];
     <link href="style.css" rel="stylesheet">
     </head>
     <body class="form">
-        
+
     <div class="container theme-showcase" role="main">
         <br>
         <div class="row">
@@ -50,11 +54,11 @@ $id = $row['telegram_id'];
                 <form method="post" action="processing/telegram.php">
                     <div class="form-group">
                     <input type="text" class="form-control" placeholder="Telegram-ID" name="telegramId" <?php
-                        
+
                         if($id != "" && $id != null){
                             echo "value='$id'";
                         }
-                        
+
                         ?>></div>
                     <p>Bitte gib hier deine Telegram-ID an.</p>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>

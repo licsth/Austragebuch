@@ -20,6 +20,12 @@
         return;
     }
     $id = $_GET['id'];
+    
+    //Erneuerung von Daten, die extern geändert werden könnten
+    $sql = "SELECT * FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $_SESSION['postdienst'] = $row['postdienst'];
+    $_SESSION['ausgetragen'] = $row['ausgetragen'];
 
     $sql = "SELECT * FROM paket WHERE id=$id";
 $result = mysqli_query($conn, $sql);
@@ -34,7 +40,7 @@ $name = $row['first'] . " " . $row['last'];
 
     $ausgetragen = $_SESSION['ausgetragen'];
     $uid = $_SESSION['uid'];
-    
+
 //Fehlermeldungen
     $err = '';
 if(!empty($_GET['err'])){
@@ -59,7 +65,7 @@ if(!empty($_GET['err'])){
     </script>
 </head>
 <body role="document">
-    
+
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Titel und Schalter werden für eine bessere mobile Ansicht zusammengefasst -->
@@ -100,7 +106,7 @@ if(!empty($_GET['err'])){
               </ul>
             </li>
               <li><a href="pakete.php">Pakete<?php
-                
+
                 $sql = "SELECT COUNT(*) FROM paket WHERE aktuell=1 AND schueler_uid='$uid'";
                 $result = mysqli_query($conn, $sql);
                 $row = mysqli_fetch_assoc($result);
@@ -108,16 +114,16 @@ if(!empty($_GET['err'])){
                 if($count > 0){
                     echo " <span class='badge'>$count</span>";
                 }
-                
+
                 ?></a></li>
           </ul>
-            
+
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $uid; ?> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="password.php">Passwort ändern</a></li>
-                <li><a href="telegram.php">Telegram</a></li>  
+                <li><a href="telegram.php">Telegram</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="logout.php">Logout</a></li>
               </ul>
@@ -126,7 +132,7 @@ if(!empty($_GET['err'])){
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    
+
     <div class="container theme-showcase" role="main">
         <h1>Pakete bearbeiten</h1><br>
         <!-- Formular, um ein Paket zu bearbeiten, enthält aktuelle Daten des Pakets -->
@@ -151,7 +157,7 @@ if(!empty($_GET['err'])){
             <!--<a href='processing/paket_delete.php?id=<?php echo $id; ?>' class="btn btn-danger">Paket löschen</a>-->
             <button onclick='del()' type="button" class="btn btn-danger">Paket löschen</button>
         </form>
-        
+
     </div>
     <script src="bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 </body>

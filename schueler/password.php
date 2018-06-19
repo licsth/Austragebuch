@@ -6,7 +6,7 @@ if(!isset($_SESSION['uid']) || $_SESSION['role'] != "schueler"){
 }
 include 'dbh.php';
 $uid = $_SESSION['uid'];
-                
+
 $first = $_SESSION['first'];
 $last = $_SESSION['last'];
 
@@ -14,6 +14,12 @@ $err = '';
 if(!empty($_GET['err'])){
     $err = $_GET['err'];
 }
+
+//Erneuerung von Daten, die extern geändert werden könnten
+$sql = "SELECT * FROM schueler WHERE uid='$uid'";
+$result = mysqli_query($conn, $sql);
+$_SESSION['postdienst'] = $row['postdienst'];
+$_SESSION['ausgetragen'] = $row['ausgetragen'];
 ?>
 <html>
 <head>
@@ -23,7 +29,7 @@ if(!empty($_GET['err'])){
     <title>Passwort ändern</title>
 </head>
 <body role="document" class="form">
-    
+
     <div class="container theme-showcase" role="main">
         <br>
         <div class="row">

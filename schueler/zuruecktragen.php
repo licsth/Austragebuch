@@ -1,11 +1,17 @@
 <?php
+include 'dbh.php';
 //Tests: Ist der Nutzer angemeldet und Schüler?
     session_start();
     if(!isset($_SESSION['uid']) || $_SESSION['role'] != 'schueler'){
         header("Location: logout.php");
-    } 
+    }
+    //Erneuerung von Daten, die extern geändert werden könnten
+    $sql = "SELECT * FROM schueler WHERE uid='$uid'";
+    $result = mysqli_query($conn, $sql);
+    $_SESSION['postdienst'] = $row['postdienst'];
+    $_SESSION['ausgetragen'] = $row['ausgetragen'];
 $uid = $_SESSION['uid'];
-include 'dbh.php';
+
 ?>
 <html>
 <head>
@@ -38,7 +44,7 @@ include 'dbh.php';
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Okay</button>
                     </form>
                 </div>
-                
+
             </div>
     </div>
 </body>
